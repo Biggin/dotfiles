@@ -67,7 +67,7 @@ Suggestions/improvements
 
 ## Author
 
-| [![twitter/cl_nelson4)](http://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](http://twitter.com/cl_nelson4 "Follow @cl_nelson4 on Twitter") |
+| ![twitter/cl_nelson4](http://twitter.com/cl_nelson4 "Follow @cl_nelson4 on Twitter") |
 |---|
 | [Cory Nelson](https://corynelson.me/)|
 
