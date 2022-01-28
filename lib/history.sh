@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
-shopt -s histappend # append to bash_history if Terminal.app quits
 
 ## Command history configuration
 if [ -z "$HISTFILE" ]; then
   HISTFILE=$HOME/.bash_history
 fi
 
-
-# some moderate history controls taken from sensible.bash
 ## SANE HISTORY DEFAULTS ##
 
 # Append to the history file, don't overwrite it
@@ -36,12 +33,12 @@ HISTFILESIZE=100000
 HISTCONTROL="erasedups:ignoreboth"
 
 # Don't record some commands
-export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
+export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:reboot:poweroff"
 
 # Use standard ISO 8601 timestamp
-# %F equivalent to %Y-%m-%d                                                                                      
+# %F equivalent to %Y-%m-%d
 # %T equivalent to %H:%M:%S (24-hours format)
-HISTTIMEFORMAT='%F %T '
+# HISTTIMEFORMAT='%F %T '
 
 # Enable incremental history search with up/down arrows (also Readline goodness)
 # Learn more about this here: http://codeinthehole.com/writing/the-most-important-command-line-tip-incremental-hi

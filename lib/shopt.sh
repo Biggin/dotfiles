@@ -33,7 +33,7 @@ shopt -s globstar 2> /dev/null
 #bind "set completion-map-case on"
 
 # Display matches for ambiguous patterns at first tab press
-#bind "set show-all-if-ambiguous on"
+bind "set show-all-if-ambiguous on"
 
 # Immediately add a trailing slash when autocompleting symlinks to directories
 bind "set mark-symlinked-directories on"
@@ -50,8 +50,19 @@ shopt -s cdspell 2> /dev/null
 # This defines where cd looks for targets
 # Add the directories you want to have fast access to, separated by colon
 # Ex: CDPATH=".:~:~/projects" will look for targets in the current working directory, in home and in the ~/projec
-CDPATH="."
+CDPATH=".:~"
 
 # This allows you to bookmark your favorite places across the file system
 # Define a variable containing a path and you will be able to cd into it regardless of the directory you're in
 shopt -s cdable_vars
+
+#export bin="$HOME/.local/bin"
+#export tools="$bin/android"
+#export hand="$HOME/.dotfiles/handmade"
+#export sdk="/opt/android/sdk"
+#export studio="/opt/studio"
+#export tc="/opt/toolchains"
+#export down="$HOME/Download"
+#export doc="$HOME/Documents"
+#export pic="$HOME/Pictures"
+#export play="$HOME/source"
