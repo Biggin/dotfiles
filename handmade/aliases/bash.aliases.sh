@@ -49,6 +49,7 @@ alias back="tac -r -s 'x\|[^x]' " # Reverse file and lines
 alias cp='cp -ir'
 alias mv='mv -i'
 alias file='file -s -z'
+alias ifile='file -s -z -i'
 alias fhere='find . -name '
 alias cls='clear'
 alias mkd='mkdir -pv'
@@ -61,10 +62,13 @@ alias psa='ps auxf'
 alias wg='wget2'
 alias wget2='wget2 -c --progress=bar'
 alias histg='history | grep'
-alias rc="nano $HOME/.bashrc"
-alias colors="bash ~/scripts/setup/print_colors.sh"
-alias funcs="nano -Y sh ${OSH_CUSTOM}/funcs.sh"
-alias aliases="nano -Y sh ${OSH_CUSTOM}/aliases/bash.aliases.sh"
+alias eng='env | grep'
+alias ens='env | sort'
+alias rc="nano -Y sh ${HOME}/.bashrc"
+alias envit="nano ${OSH_CUSTOM}/lib/bourne-shell.sh"
+alias colors="bash ${OSH_CUSTOM}/tools/print_colors.sh"
+alias funcs="nano ${OSH_CUSTOM}/funcs.sh"
+alias aliases="nano ${OSH_CUSTOM}/aliases/bash.aliases.sh"
 alias src="source ~/.bashrc"
 alias net='curl ipinfo.io'
 alias inet='curl ipinfo.io/ip'
@@ -102,6 +106,7 @@ alias dp.lg='sudo dpkg -l | grep'
 alias dp.L='sudo dpkg -L'
 alias dp.s='sudo dpkg -S'
 alias dp.con='sudo dpkg --configure -a'
+alias installed='dpkg --get-selections'
 
 ## Mega.nz cli aliases for different accounts
 alias megadf.b="megadf -h --config=${HOME}/.biggin.megarc"

@@ -1,5 +1,3 @@
-source ~/scripts/setup/colors.sh
-
 ## Function to display uptime of a system. All credits to the original author.
 function upinfo() {
     echo -ne "${Blu}${HOSTNAME} ${Mag}uptime is ${Yel} \\t "
@@ -50,7 +48,7 @@ function go () {
 		cd $1
 	else
 		mkdir -pv $1 && cd $1 || return 13
-		echo -e ${Yel}"$(pwd)"
+		#echo -e ${Yel}"$(pwd)"
 	fi
 }
 
@@ -147,7 +145,25 @@ function mkiso () {
     fi
 }
 
+# Function to add a directory to $PATH
+function pathadd() {
+	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    	PATH="$1${PATH:+":$PATH"}"
+    fi
+}
+
 # Repo commands with various flags I'm too lazy to type each time
+function installRepo () {
+    local REPO=$(mktemp /tmp/repo.XXXXXXXXX)
+    curl -o ${REPO} https://storage.googleapis.com/git-repo-downloads/repo && sudo install -m 755 ${REPO} /usr/bin/repo
+
+    ln -s /usr/bin/repo ~/.local/bin/repo || return 13
+}
+
+function resync () {
+    repo sync --force-sync --no-clone-bundle --current-branch --no-tags --optimized-fetch -j2 "$@"
+}
+
 function resub () {
     repo sync --force-sync --no-clone-bundle --current-branch --no-tags --submodules --optimized-fetch -j2 "$@"
 }
@@ -160,16 +176,24 @@ function repair () {
 	repo sync --detach --force-sync --force-remove-dirty --no-tags 	--current-branch --no-clone-bundle -j4 "$@"
 }
 
-function repinit () {
-	repo init --no-clone-bundle --no-tags --depth=1 --platform=linux --reference=${AOSP_MIRROR} --reference=${LOS_MIRROR} --dissociate --current-branch -j4 -u https://github.com/"$@"
+function repoinit () {
+	repo init --no-clone-bundle --depth=1 --platform=linux -u ${AOSP_MIRROR} -b "$@" --reference=${LOS_MIRROR} --dissociate
+}
+
+function recoinit () {
+    repo init --no-clone-bundle --platform=linux -u https://github.com/"$1" -b "$2"
 }
 
 function aospinit () {
-	repo init --no-clone-bundle --no-tags --depth=1 --platform=linux --reference=${AOSP_MIRROR} --dissociate --current-branch -j4 -u https://android.googlesource.com/"$@"
+	repo init --no-clone-bundle --depth=1 --platform=linux -u 	https://android.googlesource.com/platform/manifest -b "$@" --reference=${AOSP_MIRROR}
+}
+
+function losinit () {
+    repo init --no-clone-bundle --depth=1 --platform=linux -u https://github.com/LineageOS/android -b "$@" --reference=${LOS_MIRROR}
 }
 
 function starch () {
-	time repo start $1 --all
-	time repo checkout $1
+	time repo start "$1" --all
+	time repo checkout "$1"
 	time repo branches -a
 }
