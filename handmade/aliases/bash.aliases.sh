@@ -1,12 +1,13 @@
 ## An alias file for quicker syntax of common commands
+alias kali='cd ~ && ./start-kali.sh'
 
 ## System level aliases
-alias _='sudo'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias ......='cd ../../../../../'
+
 alias .2='cd ../../'
 alias .3='cd ../../../'
 alias .4='cd ../../../../'
@@ -27,86 +28,91 @@ alias l.='ls -d .*'
 alias la='ls -A'
 alias l='ls -sh'
 alias ll='l -lA'
-alias lt='ll -shut'
+alias lt='ll -ut'
 
 alias xx='exit'
-alias shit='sudo inxi'
-alias 600='sudo chmod 600'
-alias 644='sudo chmod 644'
-alias 700='sudo chmod 700'
-alias 755='sudo chmod 755'
-alias modx='sudo chmod +x'
-alias own="sudo chown -R $(whoami):$(whoami)"
+alias shit='inxi'
+alias 600='chmod 600'
+alias 644='chmod 644'
+alias 700='chmod 700'
+alias 755='chmod 755'
+alias modx='chmod +x'
+alias own="chown $(whoami):$(whoami)"
 alias diff='diff --color=always'
 alias diffy='diff -yw --suppress-common-lines'
 alias c='bat'
 alias cb='bat -l bash'
-alias cr='bat **/README.*'
+#alias cr="bat **/README*"
 alias blist='bat --list-themes'
 alias blang='bat --list-languages'
+alias bconfig='nano ~/.config/bat/config'
 alias cn='cat -nst'
 alias back="tac -r -s 'x\|[^x]' " # Reverse file and lines
 alias cp='cp -ir'
 alias mv='mv -i'
-alias file='file -s -z'
+alias nano='nano -W'
 alias ifile='file -s -z -i'
+alias file='file -s -z'
 alias fhere='find . -name '
 alias cls='clear'
 alias mkd='mkdir -pv'
 alias path='echo ${PATH}'
 alias top='htop'
-alias du='du -h'
-alias df='df -Tha --total'
+alias du='du -ch'
+alias df='df -h'
 alias free='free -mth'
 alias psa='ps auxf'
 alias wg='wget2'
 alias wget2='wget2 -c --progress=bar'
 alias histg='history | grep'
-alias eng='env | grep'
-alias ens='env | sort'
-alias rc="nano -Y sh ${HOME}/.bashrc"
-alias envit="nano ${OSH_CUSTOM}/lib/bourne-shell.sh"
-alias colors="bash ${OSH_CUSTOM}/tools/print_colors.sh"
-alias funcs="nano ${OSH_CUSTOM}/funcs.sh"
-alias aliases="nano ${OSH_CUSTOM}/aliases/bash.aliases.sh"
+alias rc="nano $HOME/.bashrc"
+alias colors="bash ~/scripts/setup/print_colors.sh"
+alias funcs="nano $OSH_CUSTOM/funcs.sh"
+alias aliases="nano $OSH_CUSTOM/aliases/bash.aliases.sh"
 alias src="source ~/.bashrc"
 alias net='curl ipinfo.io'
-alias inet='curl ipinfo.io/ip'
 alias ip='ip -c -h -d -s -s a'
+alias chains='proxychains4'
 alias setperf='echo "performance" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
 alias setsave='echo "powersave" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
 alias rfkill='sudo rfkill --output DEVICE,ID,TYPE,TYPE-DESC,SOFT,HARD'
+alias fortune='fortune | lolcat'
 
 ## File removal "securely" for the noid...
-alias sub='sudo scrub -SRfr -p pfitzner33'
+alias scb='scrub -SRfr -p pfitzner33'
 alias bish='scrub -SRfr -p pfitzner33 ~/.bash_history ~/.lesshst'
-alias shard='sudo shred -fzn 23 --remove=wipe'
-alias rmf='sudo rm -rf'
+alias rmf='shred -fzn 23 --remove=wipe'
 
 ## Aliases for package management
-alias ag='sudo apt-get'
-alias ai='sudo apt-get install'
-alias ap='sudo apt-get purge'
-alias al='sudo apt list'
-alias ali='sudo apt list --installed'
-alias alig='sudo apt list --installed | grep'
-alias as='sudo apt search'
-alias aptsh='sudo apt show'
-alias au='sudo apt-get update'
-alias auu='sudo apt-get update && sudo apt-get upgrade'
-alias clapt='sudo apt autoremove && sudo apt remove && sudo apt autoclean && sudo apt clean'
+alias ag='apt-get'
+alias ai='apt-get install'
+alias afb='apt --fix-broken install'
+alias ap='apt-get purge'
+alias al='apt list'
+alias ali='apt list --installed'
+alias alig='apt list --installed | grep'
+alias as='apt search'
+alias aptsh='apt show'
+alias au='apt-get update'
+alias auu='apt-get update && apt-get upgrade'
+alias clapt='apt autoremove && apt remove && apt autoclean && apt clean'
+
+## Termux specific package commands
+alias pk.fl='pkg files'
+alias pk.la='pkg list-all'
+alias pk.li='pkg list-installed'
+alias pk.ug='pkg upgrade'
 
 ## Dpkg simplification
-alias dp='sudo dpkg'
-alias dp.h='sudo dpkg --help'
-alias dp.fh='sudo dpkg --force-help'
-alias dp.i='sudo dpkg -i'
-alias dp.l='sudo dpkg -l'
-alias dp.lg='sudo dpkg -l | grep'
-alias dp.L='sudo dpkg -L'
-alias dp.s='sudo dpkg -S'
-alias dp.con='sudo dpkg --configure -a'
-alias installed='dpkg --get-selections'
+alias dp='dpkg'
+alias dp.h='dpkg --help'
+alias dp.fh='dpkg --force-help'
+alias dp.i='dpkg -i'
+alias dp.lg='dpkg -l | grep'
+alias dp.lf='dpkg -L'
+alias dp.lp='dpkg -l'
+alias dp.s='dpkg -S'
+alias dp.con='dpkg --configure -a'
 
 ## Mega.nz cli aliases for different accounts
 alias megadf.b="megadf -h --config=${HOME}/.biggin.megarc"

@@ -4,23 +4,21 @@
 # Utilizing the adb & fastboot packages
 #
 ###########################################################
-alias aliases.andy="nano ${OSH_CUSTOM}/aliases/android.aliases.sh"
+alias aliases.adb='nano ~/.dotfiles/handmade/aliases/android.aliases.sh'
 
 alias adb_='adb devices -l'
 alias adbk='adb kill-server'
 alias adb.rt='adb root'
 alias adb.urt='adb unroot'
-alias adb.sh='adb shell'
-alias adb.pu='adb push'
-alias adb.pus='adb push --sync'
-alias adb.ll='adb pull'
-alias adb.lla='adb pull -a'
+alias adb.sh='adb shell -e \ -x'
+alias adb.pu='adb push --sync'
+alias adb.ll='adb pull -a'
 alias adb.syl='adb sync -l'
 alias adb.syd='adb sync -n'
-alias adb.sd="adb shell 'ls -AFC --color=always /storage/emulated/0/'"
-alias adb.sys="adb shell 'ls -AFC --color=always /system/'"
-alias adb.ven="adb shell 'ls -AFC --color=always /vendor/'"
-alias adb.dat="adb shell 'ls -AFC --color=always /data/'"
+alias adb.sd="adb shell -x 'ls -AFC --color=always /storage/emulated/0/'"
+alias adb.sys="adb shell -x 'ls -AFC --color=always /system/'"
+alias adb.ven="adb shell -x 'ls -AFC --color=always /vendor/'"
+alias adb.dat="adb shell -x 'ls -AFC --color=always /data/'"
 alias adb.ins='adb install -rg --instant --streaming'
 alias adb.un='adb uninstall'
 alias adb.unk='adb uninstall -k' # Keep app files on device
@@ -30,7 +28,7 @@ alias adb.rb='adb reboot bootloader'
 alias adb.rr='adb reboot recovery'
 alias adb.off='adb reconnect offline'
 alias adb.num='adb get-serialno'
-alias adb.con='adb tcpip && adb connect "$@":5555'
+alias adb.con='adb tcpip 5555 && adb connect "$@":5555'
 
 ## Fastboot aliases for working with mobile devices
 alias fast='fastboot'
@@ -42,3 +40,8 @@ alias fast.fb='fastboot flash boot'
 alias fast.fr='fastboot flash recovery'
 alias fast.fs='fastboot flash system'
 alias fast.var='fastboot getvar all'
+
+function adb.wifi () {
+	adb kill-server && adb start-server || exit 13
+	adb connect "$1"
+}
