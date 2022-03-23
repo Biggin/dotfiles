@@ -83,3 +83,6 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# nano history
+handmade/symlinks/local.link/share/nano/filepos_history

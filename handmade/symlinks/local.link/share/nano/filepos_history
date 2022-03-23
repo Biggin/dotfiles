@@ -64,7 +64,6 @@
 /data/data/com.termux/files/home/github/dotfiles/handmade/colors.sh 121 33
 /data/data/com.termux/files/home/github/dotfiles/lib/spectrum.sh 36 1
 /data/data/com.termux/files/home/.gitconfig 42 5
-/data/data/com.termux/files/home/github/biggin/dotfiles/.git/config 8 1
 /data/data/com.termux/files/home/.termux/termux.properties 26 1
 /data/data/com.termux/files/usr/etc/banner 6 1
 /data/data/com.termux/files/usr/etc/bash.bashrc 14 17
@@ -86,3 +85,5 @@
 /data/data/com.termux/files/home/github/dotfiles/handmade/funcs.sh 169 12
 /data/data/com.termux/files/home/github/dotfiles/handmade/aliases/bash.aliases.sh 46 39
 /data/data/com.termux/files/home/github/dotfiles/handmade/aliases/git.aliases.sh 147 1
+/data/data/com.termux/files/home/github/biggin/dotfiles/.git/config 7 11
+/data/data/com.termux/files/home/github/biggin/dotfiles/.gitignore 88 56
