@@ -1,7 +1,8 @@
 ## An alias file for quicker syntax of common commands
 
 ## System level aliases
-alias _='sudo'
+alias sudo='sudo '
+alias _='sudo '
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
@@ -35,13 +36,14 @@ alias 600='sudo chmod 600'
 alias 644='sudo chmod 644'
 alias 700='sudo chmod 700'
 alias 755='sudo chmod 755'
+alias 775='sudo chmod 775'
 alias modx='sudo chmod +x'
-alias own="sudo chown -R $(whoami):$(whoami)"
-alias diff='diff --color=always'
-alias diffy='diff -yw --suppress-common-lines'
+alias own="sudo chown $(whoami):$(whoami)"
+alias suown="sudo chown root:root"
+alias diff='diff -ywB --suppress-common-lines --color=always'
+alias diffy='diff -s'
 alias c='bat'
 alias cb='bat -l bash'
-alias cr='bat **/README.*'
 alias blist='bat --list-themes'
 alias blang='bat --list-languages'
 alias cn='cat -nst'
@@ -49,7 +51,7 @@ alias back="tac -r -s 'x\|[^x]' " # Reverse file and lines
 alias cp='cp -ir'
 alias mv='mv -i'
 alias file='file -s -z'
-alias ifile='file -s -z -i'
+alias ifile='file -i'
 alias fhere='find . -name '
 alias cls='clear'
 alias mkd='mkdir -pv'
@@ -59,16 +61,17 @@ alias du='du -h'
 alias df='df -Tha --total'
 alias free='free -mth'
 alias psa='ps auxf'
-alias wg='wget2'
-alias wget2='wget2 -c --progress=bar'
+alias arsync='rsync -avuhP --stats --progress'
+alias wg='wget2 -c --show-progress --progress=bar:force'
 alias histg='history | grep'
 alias eng='env | grep'
 alias ens='env | sort'
+alias nash='nano -Y sh'
 alias rc="nano -Y sh ${HOME}/.bashrc"
-alias envit="nano ${OSH_CUSTOM}/lib/bourne-shell.sh"
 alias colors="bash ${OSH_CUSTOM}/tools/print_colors.sh"
 alias funcs="nano ${OSH_CUSTOM}/funcs.sh"
 alias aliases="nano ${OSH_CUSTOM}/aliases/bash.aliases.sh"
+alias shalias="nano ${OSH_CUSTOM}/lib/bourne-shell.sh"
 alias src="source ~/.bashrc"
 alias net='curl ipinfo.io'
 alias inet='curl ipinfo.io/ip'
@@ -86,6 +89,7 @@ alias rmf='sudo rm -rf'
 ## Aliases for package management
 alias ag='sudo apt-get'
 alias ai='sudo apt-get install'
+alias afb='sudo apt-get install --fix-broken'
 alias ap='sudo apt-get purge'
 alias al='sudo apt list'
 alias ali='sudo apt list --installed'

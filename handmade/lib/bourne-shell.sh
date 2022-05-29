@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # Options and configs from the 'standard' ~/.bashrc file
 # Make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -41,3 +42,4 @@ export CCACHE_MAXSIZE=50G
 export CCACHE_DIR="${Mirrors}/ccache"
 export CCACHE_LOGFILE="${Mirrors}/ccache/cash.log"
 export CCACHE_NLEVELS=7
+export CCACHE_EXEC=/usr/bin/ccache

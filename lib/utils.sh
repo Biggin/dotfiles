@@ -8,12 +8,10 @@
 #                                                                              #
 ################################################################################
 
-############################---Usage---#########################################
-
+############################  --- Usage ---  ###################################
 # source ~/path/to/directory/utils.sh
 
 ########################## Styled text output ##################################
-
 # e_header "I am a sample script"
 # e_success "I am a success message"
 # e_error "I am an error message"
@@ -23,7 +21,6 @@
 # e_note "I am a note"
 
 ################# Performing simple Yes/No confirmations #######################
-
 # seek_confirmation "Do you want to print a success message?"
 # if is_confirmed; then
 #   e_success "Here is a success message"
@@ -32,7 +29,6 @@
 # fi
 
 ############ Testing if packages, apps, gems, etc. are installed ###############
-
 # if type_exists 'git'; then
 #   e_success "Git good to go"
 # else
@@ -48,11 +44,9 @@
 # fi
 
 ##################### Sending notifications to Pushover ########################
-
 # pushover "We just finished performing a lengthy task."
 
 ############################### Comparing A List ###############################
-
 # recipes=(
 #   A-random-package
 #   bash
@@ -71,8 +65,6 @@
 
 
 ################################################################################
-
-#
 # Set Colors
 #
 # Use colors, but only if connected to a terminal, and that terminal
@@ -102,7 +94,7 @@ else
   tan=""
 fi
 
-#
+
 # Headers and Logging
 #
 e_header() { printf "\n${bold}${purple}==========  %s  ==========${reset}\n" "$@"
@@ -122,7 +114,7 @@ e_bold() { printf "${bold}%s${reset}\n" "$@"
 e_note() { printf "${underline}${bold}${blue}Note:${reset}  ${yellow}%s${reset}\n" "$@"
 }
 
-#
+
 # USAGE FOR SEEKING CONFIRMATION
 # seek_confirmation "Ask a question"
 # Credit: https://github.com/kevva/dotfiles
@@ -139,6 +131,7 @@ seek_confirmation() {
   printf "\\n"
 }
 
+
 # Test whether the result of an 'ask' is a confirmation
 is_confirmed() {
   if [[ "$REPLY" =~ ^[Yy]$ ]]; then
@@ -147,7 +140,7 @@ is_confirmed() {
   return 1
 }
 
-#
+
 # Test whether a command exists
 # $1 = cmd to test
 # Usage:
@@ -161,7 +154,7 @@ type_exists() {
   [ "$(type -P "$1")" ]
 }
 
-#
+
 # Test which OS the user runs
 # $1 = OS to test
 # Usage: if is_os 'darwin'; then
@@ -173,7 +166,7 @@ is_os() {
   return 1
 }
 
-#
+
 # Pushover Notifications
 # Usage: pushover "Title Goes Here" "Message Goes Here"
 # Credit: http://ryonsherman.blogspot.com/2012/10/shell-script-to-send-pushover.html

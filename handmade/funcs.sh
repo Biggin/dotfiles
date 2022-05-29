@@ -161,15 +161,16 @@ function installRepo () {
 }
 
 function resync () {
-    repo sync --force-sync --no-clone-bundle --current-branch --no-tags --optimized-fetch -j2 "$@"
+    repo sync --no-clone-bundle --current-branch --no-tags --optimized-fetch -j4 "$@"
 }
 
 function resub () {
-    repo sync --force-sync --no-clone-bundle --current-branch --no-tags --submodules --optimized-fetch -j2 "$@"
+    repo sync --no-clone-bundle --current-branch --no-tags --optimized-fetch --submodules -j4 "$@"
 }
 
-function repoir () {
-	sudo repo sync --force-sync --no-clone-bundle -j4 "$@"
+function susync () {
+	sudo repo sync --force-sync --force-remove-dirty \
+	  --no-clone-bundle -j4 "$@"
 }
 
 function repair () {
@@ -177,23 +178,76 @@ function repair () {
 }
 
 function repoinit () {
-	repo init --no-clone-bundle --depth=1 --platform=linux -u ${AOSP_MIRROR} -b "$@" --reference=${LOS_MIRROR} --dissociate
+	repo init --no-clone-bundle --depth=1 --platform=linux -u ${Aosp_Mirror} -b "$@" --reference=${Los_Mirror} --dissociate
 }
 
 function recoinit () {
-    repo init --no-clone-bundle --platform=linux -u https://github.com/"$1" -b "$2"
+    repo init --no-clone-bundle --depth=1 --platform=linux -u https://github.com/"$1" -b "$2"
 }
 
 function aospinit () {
-	repo init --no-clone-bundle --depth=1 --platform=linux -u 	https://android.googlesource.com/platform/manifest -b "$@" --reference=${AOSP_MIRROR}
+	repo init --no-clone-bundle --depth=1 --platform=linux -u https://android.googlesource.com/platform/manifest -b "$@" --reference=${Aosp_Mirror}
 }
 
 function losinit () {
-    repo init --no-clone-bundle --depth=1 --platform=linux -u https://github.com/LineageOS/android -b "$@" --reference=${LOS_MIRROR}
+    repo init --no-clone-bundle --depth=1 --platform=linux -u https://github.com/LineageOS/android -b "$@" --reference=${Los_Mirror}
 }
 
 function starch () {
-	time repo start "$1" --all
-	time repo checkout "$1"
-	time repo branches -a
+	repo start "$1" --all
+	repo checkout "$1"
+	repo branches -a
+}
+
+# Setup zRAM to take the whole RAM size
+alias zramInit &>/dev/null && unalias zramInit
+
+function zramInit () { (
+    [[ $(whoami) != root ]] && return 1
+    local MEMSIZE
+
+    # Get amount of physical memory (in kB)
+    MEMSIZE=$(grep MemTotal /proc/meminfo | awk '{print $2$3}')
+
+    # Turn off HDD swap first
+    swapoff /dev/sda1
+
+    # Setup zRAM as swap
+    modprobe zram
+
+    # Write same amount of physical memory
+    echo "$MEMSIZE" >/sys/devices/virtual/block/zram0/disksize
+    mkswap /dev/zram0
+    swapon -p 100 /dev/zram0
+
+    # Set swappiness to 100
+    sysctl vm.swappiness=100
+) || return 1; }
+alias zramInit='chkSudo su -c "$(declare -f zramInit) && zramInit &> /dev/null"'
+
+# De-init zRAM configuration set before
+alias zramDeinit &>/dev/null && unalias zramDeinit
+
+function zramDeinit () { (
+    [[ $(whoami) != root ]] && return 1
+
+    # Turn off zRAM
+    swapoff /dev/zram0
+    rmmod zram
+
+    # Turn back on HDD swap
+    swapon -p -2 /dev/sda1
+
+    # Set swappiness to 1
+    sysctl vm.swappiness=1
+) || return 0; } # suppress non-zero exit status
+alias zramDeinit='chkSudo su -c "$(declare -f zramDeinit) && zramDeinit &> /dev/null"'
+
+# Case-insensitive, extension irrelevant glob search for README files
+function cr () {
+    bat -l markdown "$@"/**/[Rr][Ee][Aa][Dd][Mm][Ee]*
+}
+
+function help () {
+    "$@" --help 2>&1 | bat --plain --language=help
 }
