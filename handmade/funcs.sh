@@ -41,10 +41,31 @@ function extract {
  fi
 }
 
+## Read 'ALL' Readme files recursively
+## regardless of file extension
+function cr () {
+    if [ $? == 0 ]; then
+        bat ./**/*[Rr][Ee][Aa][Dd][Mm][Ee]*
+    else
+        bat **/*[Rr][Ee][Aa][Dd][Mm][Ee]*
+    fi
+}
+
+## List files in directory after
+## entering it
+function cd () {
+    if [ $# != 0 ]; then
+        command cd "$1" && ls
+    else
+        command cd ~/ && ls || return 13
+    fi
+}
+
 ## Make a new directory and change into it
 function go () {
 	if [ -d $1 ]; then
 		echo -e ${Yel}"The directory $1 already exists"${Res}
+		sleep 1
 		cd $1
 	else
 		mkdir -pv $1 && cd $1 || return 13
@@ -55,10 +76,16 @@ function go () {
 ## Testing a new clone function to prevent having to type the full domain name each time
 function clone () {
 	git clone https://github.com/"$@"
+
+	local dir=$(echo "$@" | cut -d '/' -f 2)
+	cd ${dir} || return 13
 }
 
 function lab () {
 	git clone https://gitlab.com/"$@"
+
+	local dir=$(echo "$@" | cut -d '/' -f 2)
+	cd ${dir} || return 13
 }
 
 function bash_stats() {
@@ -73,15 +100,18 @@ function zipf () {
 	zip -r "$1".zip "$1"
 }
 
-function buf () {
+function bakup () {
 	local filetime filename
 	filename=$1
-	filetime=$(date +%m%d%Y_%H%M)
+	filetime=$(date +%m%d%Y)
 	cp -a "${filename}" "${filename}_${filetime}"
 }
 
 function del () {
-	mkdir -pv /tmp/.trash && mv "$@" /tmp/.trash
+	if [ -z ${HOME}/.local/tmp/.trash ]; then
+	    mkdir -pv ${HOME}/.local/tmp/.trash && mv "$@" ${HOME}/.local/tmp/.trash
+	else mv "$@" ${HOME}/.local/tmp/.trash
+	fi
 }
 
 function my_ps () {
@@ -89,7 +119,7 @@ function my_ps () {
 	pid,%cpu,%mem,start,time,bsdtime,command
 }
 
-function batch_chmod() {
+function fix_perms () {
 	echo -ne "${Blu}Applying 0755 permission for all directories..."
 	(find . -type d -print0 | xargs -0 chmod 0755) &
 	spinner
@@ -146,12 +176,16 @@ function mkiso () {
 }
 
 # Function to add a directory to $PATH
-function pathadd() {
+function add2Path () {
 	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
     	PATH="$1${PATH:+":$PATH"}"
     fi
 }
 
+
+
+
+####################################
 # Repo commands with various flags I'm too lazy to type each time
 function installRepo () {
     local REPO=$(mktemp /tmp/repo.XXXXXXXXX)
@@ -161,16 +195,15 @@ function installRepo () {
 }
 
 function resync () {
-    repo sync --no-clone-bundle --current-branch --no-tags --optimized-fetch -j4 "$@"
+    repo sync --force-sync --no-clone-bundle --current-branch --no-tags --optimized-fetch -j2 "$@"
 }
 
 function resub () {
-    repo sync --no-clone-bundle --current-branch --no-tags --optimized-fetch --submodules -j4 "$@"
+    repo sync --force-sync --no-clone-bundle --current-branch --no-tags --submodules --optimized-fetch -j2 "$@"
 }
 
-function susync () {
-	sudo repo sync --force-sync --force-remove-dirty \
-	  --no-clone-bundle -j4 "$@"
+function repoir () {
+	sudo repo sync --force-sync --no-clone-bundle -j4 "$@"
 }
 
 function repair () {
@@ -178,76 +211,23 @@ function repair () {
 }
 
 function repoinit () {
-	repo init --no-clone-bundle --depth=1 --platform=linux -u ${Aosp_Mirror} -b "$@" --reference=${Los_Mirror} --dissociate
+	repo init --no-clone-bundle --depth=1 --platform=linux -u ${AOSP_MIRROR} -b "$@" --reference=${LOS_MIRROR} --dissociate
 }
 
 function recoinit () {
-    repo init --no-clone-bundle --depth=1 --platform=linux -u https://github.com/"$1" -b "$2"
+    repo init --no-clone-bundle --platform=linux -u https://github.com/"$1" -b "$2"
 }
 
 function aospinit () {
-	repo init --no-clone-bundle --depth=1 --platform=linux -u https://android.googlesource.com/platform/manifest -b "$@" --reference=${Aosp_Mirror}
+	repo init --no-clone-bundle --depth=1 --platform=linux -u 	https://android.googlesource.com/platform/manifest -b "$@" --reference=${AOSP_MIRROR}
 }
 
 function losinit () {
-    repo init --no-clone-bundle --depth=1 --platform=linux -u https://github.com/LineageOS/android -b "$@" --reference=${Los_Mirror}
+    repo init --no-clone-bundle --depth=1 --platform=linux -u https://github.com/LineageOS/android -b "$@" --reference=${LOS_MIRROR}
 }
 
 function starch () {
-	repo start "$1" --all
-	repo checkout "$1"
-	repo branches -a
-}
-
-# Setup zRAM to take the whole RAM size
-alias zramInit &>/dev/null && unalias zramInit
-
-function zramInit () { (
-    [[ $(whoami) != root ]] && return 1
-    local MEMSIZE
-
-    # Get amount of physical memory (in kB)
-    MEMSIZE=$(grep MemTotal /proc/meminfo | awk '{print $2$3}')
-
-    # Turn off HDD swap first
-    swapoff /dev/sda1
-
-    # Setup zRAM as swap
-    modprobe zram
-
-    # Write same amount of physical memory
-    echo "$MEMSIZE" >/sys/devices/virtual/block/zram0/disksize
-    mkswap /dev/zram0
-    swapon -p 100 /dev/zram0
-
-    # Set swappiness to 100
-    sysctl vm.swappiness=100
-) || return 1; }
-alias zramInit='chkSudo su -c "$(declare -f zramInit) && zramInit &> /dev/null"'
-
-# De-init zRAM configuration set before
-alias zramDeinit &>/dev/null && unalias zramDeinit
-
-function zramDeinit () { (
-    [[ $(whoami) != root ]] && return 1
-
-    # Turn off zRAM
-    swapoff /dev/zram0
-    rmmod zram
-
-    # Turn back on HDD swap
-    swapon -p -2 /dev/sda1
-
-    # Set swappiness to 1
-    sysctl vm.swappiness=1
-) || return 0; } # suppress non-zero exit status
-alias zramDeinit='chkSudo su -c "$(declare -f zramDeinit) && zramDeinit &> /dev/null"'
-
-# Case-insensitive, extension irrelevant glob search for README files
-function cr () {
-    bat -l markdown "$@"/**/[Rr][Ee][Aa][Dd][Mm][Ee]*
-}
-
-function help () {
-    "$@" --help 2>&1 | bat --plain --language=help
+	time repo start "$1" --all
+	time repo checkout "$1"
+	time repo branches -a
 }

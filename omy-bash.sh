@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-OSH=${HOME}/dotfiles
+#OSH=${HOME}/dotfiles
 
 # Bail out early if non-interactive
 case $- in

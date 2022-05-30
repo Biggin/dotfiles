@@ -1,64 +1,77 @@
-alias aliases.repo="nano ${OSH_CUSTOM}/aliases/repo.aliases.sh"
+############
+#
+#  Aliases
+#
+############
 
-## Various repo commands simplified slightly to reduce typing...
+#######################################
+alias aliases.repo='nano ${OSH_CUSTOM}/aliases/repo.aliases.sh'
+y
 alias rstat='repo status'
-alias relist='repo list .'
-alias relist.n='repo list -n'
-alias relist.p='repo list -p'
-alias reup='repo selfupdate'
-alias repo.h='repo help --all'
-alias rebra='repo branches'
-alias restart='repo start'
-alias rediff='repo diff'
 alias reman='repo manifest'
-alias remdiff='repo diffmanifests'
-alias repobase='repo rebase -i'
-alias restash='repo rebase --autosquash --autostash -m'
-alias review='repo overview --current-branch'
+alias rebra='repo branches'
+alias rechk='repo checkout'
+alias reup='repo selfupdate'
+alias repoh='repo help --all'
+alias rerepo='repo rebase -i'
+alias rediff='repo diffmanifests'
+alias rebaser='repo rebase --autosquash --auto-stash -m'
 
 
-## Repo functions for various tasks pertaining to building the Android OS
+##############
+#
+#  Functions
+#
+##############
+
+#######################################
+## Repo commands with various flags I'm
+## too lazy to type each time
 function installRepo () {
     local REPO=$(mktemp /tmp/repo.XXXXXXXXX)
-    curl -o ${REPO} https://storage.googleapis.com/git-repo-downloads/repo && sudo install -m 755 ${REPO} /usr/bin/repo
-    ln -s /usr/bin/repo ~/.local/bin/repo || return 13
+    curl -o ${REPO} https://storage.googleapis.com/git-repo-downloads/repo && install -m 755 ${REPO} /usr/bin/repo
+
+    ln -s ${PREFIX}/bin/repo ~/.local/bin/repo || return 13
 }
 
-function resync () {
-    repo sync --no-clone-bundle --current-branch --no-tags --optimized-fetch -j4 "$@"
+## My standard repo sync call for fast,
+## and minimal syncing
+function respo () {
+    repo sync --force-sync --no-clone-bundle --current-branch --no-tags --optimized-fetch -j2 "$@"
 }
 
-function resubs () {
-    repo sync --no-clone-bundle --current-branch --no-tags --optimized-fetch --submodules -j4 "$@"
+function resub () {
+    repo sync --force-sync --no-clone-bundle --current-branch --no-tags --submodules --optimized-fetch -j2 "$@"
 }
 
+## My standard repo call for fixing
+## broken projects or directories that
+## I broke
 function repair () {
-	repo sync --detach --force-sync --force-remove-dirty --no-tags 	--current-branch --no-clone-bundle -j4 "$@"
-}
-
-function sudosync () {
-	sudo repo sync --force-sync --no-clone-bundle -j4 "$@"
+        repo sync --detach --force-sync --force-remove-dirty --prune --no-clone-bundle -j4 "$@"
 }
 
 function repoinit () {
-	repo init --no-clone-bundle --depth=1 --platform=linux -u ${Aosp_Mirror} -b "$@" --reference=${Los_Mirror} --dissociate
+        repo init --no-clone-bundle --no-tags --current-branch --depth=1 --platform=linux -u "$@"
 }
 
 function recoinit () {
-    repo init --no-clone-bundle --depth=1 --platform=linux -u 
-    https://github.com/"$@"
+    repo init --no-clone-bundle --platform=linux -u https://github.com/"$1" -b "$2"
 }
 
 function aospinit () {
-	repo init --no-clone-bundle --depth=1 --platform=linux -u https://android.googlesource.com/platform/manifest -b "$@" --reference=${Aosp_Mirror} --dissociate
+        repo init --no-clone-bundle --no-tags --current-branch --depth=1 --platform=linux -u https://android.googlesource.com/platform/manifest -b "$@"
 }
 
 function losinit () {
-    repo init --no-clone-bundle --depth=1 --platform=linux -u https://github.com/LineageOS/android -b "$@" --reference=${Los_Mirror}
+    repo init --no-clone-bundle --no-tags --current-branch --depth=1 --platform=linux -u "https://github.com/LineageOS/android" -b "$@"
 }
 
+## Call to start a new branch for
+## development and also checkout that
+## same branch in one call
 function starch () {
-    repo start "$1" --all
-    repo checkout "$1"
-    repo branches -a
+        time repo start "$1" --all
+        time repo checkout "$1"
+        time repo branches -a
 }
