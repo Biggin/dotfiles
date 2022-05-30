@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 # Bail out early if non-interactive
 case $- in
@@ -13,7 +13,8 @@ fi
 
 # Initializes Oh My Bash
 # add a function path
-fpath=($OSH/functions $fpath)
+#fpath=($OSH_CUSTOM/functions $fpath)
+fpath=($OSH_CUSTOM/extras $fpath)
 
 # Set OSH_CUSTOM to the path where your custom config files
 # and plugins exists, or else we will use the default custom/
@@ -116,7 +117,7 @@ for completion in ${completions[@]}; do
   fi
 done
 
-# Load all of your custom configurations from custom/
+# Load all of your custom configurations from handmade/
 for config_file in $OSH_CUSTOM/*.sh; do
   if [ -f $config_file ]; then
     source $config_file
@@ -124,7 +125,17 @@ for config_file in $OSH_CUSTOM/*.sh; do
 done
 unset config_file
 
-# Load colors first so they can be use in base theme
+# Load all of your custom configurations from handmade/lib/
+for custom_config in $OSH_CUSTOM/lib/*.sh; do
+  if [ -f $custom_config ]; then
+    source $custom_config
+  fi
+done
+unset custom_config
+
+# Load colors first so they can be
+# used in base theme, custom coloring
+# options added here...
 source "${OSH_CUSTOM}/themes/colours.theme.sh"
 source "${OSH_CUSTOM}/themes/base.theme.sh"
 
@@ -157,5 +168,5 @@ if ! type_exists '__git_ps1' ; then
 fi
 
 # Adding Support for other OSes
-[ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview" ||
-[ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app" || PREVIEW="less"
+#[ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview" ||
+#[ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app" || PREVIEW="less"

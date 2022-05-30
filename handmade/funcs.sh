@@ -41,10 +41,31 @@ function extract {
  fi
 }
 
+## Read 'ALL' Readme files recursively
+## regardless of file extension
+function cr () {
+    if [ $? == 0 ]; then
+        bat ./**/*[Rr][Ee][Aa][Dd][Mm][Ee]*
+    else
+        bat **/*[Rr][Ee][Aa][Dd][Mm][Ee]*
+    fi
+}
+
+## List files in directory after
+## entering it
+function cd () {
+    if [ $# != 0 ]; then
+        command cd "$1" && ls
+    else
+        command cd ~/ && ls || return 13
+    fi
+}
+
 ## Make a new directory and change into it
 function go () {
 	if [ -d $1 ]; then
 		echo -e ${Yel}"The directory $1 already exists"${Res}
+		sleep 1
 		cd $1
 	else
 		mkdir -pv $1 && cd $1 || return 13
@@ -55,10 +76,16 @@ function go () {
 ## Testing a new clone function to prevent having to type the full domain name each time
 function clone () {
 	git clone https://github.com/"$@"
+
+	local dir=$(echo "$@" | cut -d '/' -f 2)
+	cd ${dir} || return 13
 }
 
 function lab () {
 	git clone https://gitlab.com/"$@"
+
+	local dir=$(echo "$@" | cut -d '/' -f 2)
+	cd ${dir} || return 13
 }
 
 function bash_stats() {
@@ -73,15 +100,18 @@ function zipf () {
 	zip -r "$1".zip "$1"
 }
 
-function buf () {
+function bakup () {
 	local filetime filename
 	filename=$1
-	filetime=$(date +%m%d%Y_%H%M)
+	filetime=$(date +%m%d%Y)
 	cp -a "${filename}" "${filename}_${filetime}"
 }
 
 function del () {
-	mkdir -pv /tmp/.trash && mv "$@" /tmp/.trash
+	if [ -z ${HOME}/.local/tmp/.trash ]; then
+	    mkdir -pv ${HOME}/.local/tmp/.trash && mv "$@" ${HOME}/.local/tmp/.trash
+	else mv "$@" ${HOME}/.local/tmp/.trash
+	fi
 }
 
 function my_ps () {
@@ -89,7 +119,7 @@ function my_ps () {
 	pid,%cpu,%mem,start,time,bsdtime,command
 }
 
-function batch_chmod() {
+function fix_perms () {
 	echo -ne "${Blu}Applying 0755 permission for all directories..."
 	(find . -type d -print0 | xargs -0 chmod 0755) &
 	spinner
@@ -146,12 +176,16 @@ function mkiso () {
 }
 
 # Function to add a directory to $PATH
-function pathadd() {
+function add2Path () {
 	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
     	PATH="$1${PATH:+":$PATH"}"
     fi
 }
 
+
+
+
+####################################
 # Repo commands with various flags I'm too lazy to type each time
 function installRepo () {
     local REPO=$(mktemp /tmp/repo.XXXXXXXXX)

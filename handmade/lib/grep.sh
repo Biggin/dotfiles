@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 # is x grep argument available?
 #grep_flag_available() {
 #    echo | grep $1 "" >/dev/null 2>&1

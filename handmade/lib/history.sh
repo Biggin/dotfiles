@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 ## Command history configuration
 if [ -z "$HISTFILE" ]; then
