@@ -74,11 +74,8 @@ alias git.dt='git diff-tree --no-commit-id --name-only -r'
 alias git.dw='git diff --word-diff'
 
 alias git.f='git fetch'
-alias git.fa='git fetch --all --prune'
 alias git.fo='git fetch origin'
-
-alias git.pull='git pull origin $(git_current_branch)'
-#compdef _git git.pull=git-checkout
+alias git.fa='git fetch --all --prune'
 
 alias git.push='git push origin $(git_current_branch)'
 #compdef _git git.push=git-checkout
@@ -94,25 +91,22 @@ alias git.llr='git pull --rebase'
 alias git.llra='git pull --rebase --autostash'
 
 alias git.lg='git log --stat -p'
-alias git.logg='git log --graph --decorate --all'
+alias git.lo='git log --graph --decorate --all'
 alias git.logm='git log --graph --max-count=10'
-alias git.lo='git log --oneline --decorate'
 alias git.log='git log --oneline --decorate --graph'
-alias git.loga='git log --oneline --decorate --graph --all'
+
 alias git.lp="_git_log_prettily"
 #compdef _git git.lp=git-log
-alias git.sps='git show --pretty=short --show-signature'
+alias git.shw='git show --pretty=short --show-signature'
 
 alias git.mrg='git merge'
 alias git.mom='git merge origin/master'
-alias git.mt='git mergetool --no-prompt'
 
 alias git.pu='git push'
 #compdef _git git.pu=git-push
-alias git.puv='git push -v'
-#compdef _git git.puv=git-push
 
 alias git.re='git remote'
+alias git.rev='git remote -v'
 alias git.rea='git remote add'
 alias git.rem='git remote remove'
 alias git.ren='git remote rename'
@@ -120,10 +114,9 @@ alias git.res='git remote set-url'
 alias git.reu='git remote update'
 
 alias git.rb='git rebase'
+alias git.rbi='git rebase -i'
 alias git.rba='git rebase --abort'
 alias git.rbc='git rebase --continue'
-alias git.rbi='git rebase -i'
-alias git.rbm='git rebase master'
 alias git.rbs='git rebase --skip'
 
 alias git.rh='git reset --hard'
@@ -131,7 +124,6 @@ alias git.rs='git reset --soft'
 alias git.rH='git reset HEAD'
 
 alias gstat='git status'
-alias gstab='git status -sb'
 
 alias git.st='git stash'
 alias git.sta='git stash apply'
@@ -141,12 +133,3 @@ alias git.stl='git stash list'
 alias git.stp='git stash pop'
 alias git.sts='git stash show --text'
 alias git.stsv='git stash save'
-
-alias git.ts='git tag -s'
-alias git.tv='git tag | sort -V'
-
-alias git.wch='git whatchanged -p --abbrev-commit --pretty=medium'
-
-
-alias glol="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glola="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
