@@ -1,5 +1,4 @@
-## An alias file for quicker syntax of package
-# manager commands
+## An alias file for quicker syntax of package manager commands
 alias aliases.pkg="nano $OSH_CUSTOM/aliases/pkg.aliases.sh"
 
 ###############################################

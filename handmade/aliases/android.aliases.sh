@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/bash
 
 ###########################################################
 #
@@ -6,7 +6,7 @@
 # Utilizing the adb & fastboot packages
 #
 ###########################################################
-alias aliases.adb="nano $OSH_CUSTOM/aliases/android.aliases.sh"
+alias aliases.andy="nano ${OSH_CUSTOM}/aliases/android.aliases.sh"
 
 alias adb_='adb devices -l'
 alias adbk='adb kill-server'
@@ -22,18 +22,16 @@ alias adb.sys="adb shell -x 'ls -AFC --color=always /system/'"
 alias adb.ven="adb shell -x 'ls -AFC --color=always /vendor/'"
 alias adb.dat="adb shell -x 'ls -AFC --color=always /data/'"
 alias adb.pro="adb shell -x 'ls -AFC --color=always /product/'"
+alias adb.ins='adb install -rg --instant --streaming'
 alias adb.un='adb uninstall'
 alias adb.unk='adb uninstall -k' # Keep app files on device
-alias adb.in='adb install -rg --instant --streaming'
 alias adb.log='adb logcat --file="~/$(getprop ro.product.vendor.device)_$(date +%-I:%M_%_b-%_d-%_y).log" --format=raw,thread,color,descriptive -D --buffer=main,system,events,crash,security -S'
 alias adb.re='adb reboot'
 alias adb.rb='adb reboot bootloader'
 alias adb.rr='adb reboot recovery'
-
 alias adb.num='adb get-serialno'
 alias adb.off='adb reconnect offline'
 alias adb.con='adb tcpip 5555 && adb connect "$@":5555'
-
 
 ## Fastboot aliases for working with mobile devices
 alias fast='fastboot'
@@ -50,7 +48,6 @@ alias fast.unc='fastboot flashing unlock_critical'
 alias fast.var='fastboot getvar all'
 alias fast.info='fastboot oem device-info'
 alias andlog="logcat -d -b main,system,events -v tag,color -f $HOME/android/logcat_$(date +%m-%d-%y_%I:%M_%P).log"
-
 
 function adb.wifi () {
 	if [[ $# != 1 ]]; then
