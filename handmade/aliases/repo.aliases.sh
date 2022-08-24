@@ -1,10 +1,10 @@
-############
-#
-#  Aliases
-#
-############
+#############
+#		    #
+#  Aliases  #
+#		    #
+#############
 
-#######################################
+###############################################
 alias aliases.repo='nano ${OSH_CUSTOM}/aliases/repo.aliases.sh'
 y
 alias rstat='repo status'
@@ -18,13 +18,13 @@ alias rediff='repo diffmanifests'
 alias rebaser='repo rebase --autosquash --auto-stash -m'
 
 
-##############
-#
-#  Functions
-#
-##############
+###############
+#			  #
+#  Functions  #
+#			  #
+###############
 
-#######################################
+################################################
 ## Repo commands with various flags I'm
 ## too lazy to type each time
 function installRepo () {
@@ -48,11 +48,15 @@ function resub () {
 ## broken projects or directories that
 ## I broke
 function repair () {
-        repo sync --detach --force-sync --force-remove-dirty --prune --no-clone-bundle -j4 "$@"
+        repo sync --detach --force-sync --force-remove-dirty --prune --no-tags --current-branch --no-clone-bundle -j4 "$@"
+}
+
+function repoir () {
+	sudo repo sync --force-sync --no-clone-bundle -j4 "$@"
 }
 
 function repoinit () {
-        repo init --no-clone-bundle --no-tags --current-branch --depth=1 --platform=linux -u "$@"
+        repo init --no-clone-bundle --no-tags --current-branch --depth=1 --platform=linux -u "$@" --reference=${AOSP_MIRROR} --dissociate
 }
 
 function recoinit () {
@@ -60,11 +64,11 @@ function recoinit () {
 }
 
 function aospinit () {
-        repo init --no-clone-bundle --no-tags --current-branch --depth=1 --platform=linux -u https://android.googlesource.com/platform/manifest -b "$@"
+        repo init --no-clone-bundle --no-tags --current-branch --depth=1 --platform=linux -u https://android.googlesource.com/platform/manifest -b "$@" --reference=${AOSP_MIRROR} --dissociate
 }
 
 function losinit () {
-    repo init --no-clone-bundle --no-tags --current-branch --depth=1 --platform=linux -u "https://github.com/LineageOS/android" -b "$@"
+    repo init --no-clone-bundle --no-tags --current-branch --depth=1 --platform=linux -u "https://github.com/LineageOS/android" -b "$@" --reference=${LOS_MIRROR} --dissociate
 }
 
 ## Call to start a new branch for

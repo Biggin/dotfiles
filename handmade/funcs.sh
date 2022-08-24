@@ -4,7 +4,15 @@ function upinfo() {
     uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10,$11}'
 }
 
-## Extract any compRessed file type with one universal command
+##############################################
+#
+# Extract any compRessed file type with one
+# universal command works with....
+# tar|tar.bz2|tar.gz|tar.xz|tbz2|tgz|txz
+# lzma|rar|gz|bz2|zip|Z|7z|arj|cab|chm|deb
+# dmg|iso|exe|lzh|rpm|msi|udf|wim|xar
+#
+##############################################
 function extract {
  if [ -z "$1" ]; then
       # display usage if no parameters given
@@ -64,7 +72,7 @@ function cd () {
 ## Make a new directory and change into it
 function go () {
 	if [ -d $1 ]; then
-		echo -e ${Yel}"The directory $1 already exists"${Res}
+		echo -e ${Yel}"The directory $1 already e*xists"${Res}
 		sleep 1
 		cd $1
 	else
@@ -73,7 +81,12 @@ function go () {
 	fi
 }
 
-## Testing a new clone function to prevent having to type the full domain name each time
+##############################################
+#
+# New clone function to prevent having to type
+# the full domain name each time
+#
+##############################################
 function clone () {
 	git clone https://github.com/"$@"
 
@@ -108,10 +121,13 @@ function bakup () {
 }
 
 function del () {
-	if [ -z ${HOME}/.local/tmp/.trash ]; then
-	    mkdir -pv ${HOME}/.local/tmp/.trash && mv "$@" ${HOME}/.local/tmp/.trash
-	else mv "$@" ${HOME}/.local/tmp/.trash
+	local Trash
+	Trash="${HOME}/.local/tmp/.trash"
+	if [ -z "$Trash" ]; then
+	    mkdir -pv "$Trash" && mv "$@" "$Trash"
+	else mv "$@" "$Trash"
 	fi
+	unset Trash
 }
 
 function my_ps () {
@@ -184,50 +200,35 @@ function add2Path () {
 
 
 
+###############################################
+#
+# Next 'BIG' idea   ...(insert here)...
+#
+##############################################
+#: TODO
 
-####################################
-# Repo commands with various flags I'm too lazy to type each time
-function installRepo () {
-    local REPO=$(mktemp /tmp/repo.XXXXXXXXX)
-    curl -o ${REPO} https://storage.googleapis.com/git-repo-downloads/repo && sudo install -m 755 ${REPO} /usr/bin/repo
+#function set_git_id () {
+	# Check git user
 
-    ln -s /usr/bin/repo ~/.local/bin/repo || return 13
-}
+	# If desired ID already set, do nothing
+	# and return config options set else
+	# ask User for desired git-cli user
+	# and email saving both to variables.
 
-function resync () {
-    repo sync --force-sync --no-clone-bundle --current-branch --no-tags --optimized-fetch -j2 "$@"
-}
+	# Check whether this shld be a local
+	# (current working tree) or a global
+	# config change.
 
-function resub () {
-    repo sync --force-sync --no-clone-bundle --current-branch --no-tags --submodules --optimized-fetch -j2 "$@"
-}
+	# Set the required options with the
+	# entered values or fallback to local
+	# machine pre-defined defaults.
 
-function repoir () {
-	sudo repo sync --force-sync --no-clone-bundle -j4 "$@"
-}
+	# Confirm the proper changes and print
+	# the results....display both global
+	# and local options in the results.
 
-function repair () {
-	repo sync --detach --force-sync --force-remove-dirty --no-tags 	--current-branch --no-clone-bundle -j4 "$@"
-}
-
-function repoinit () {
-	repo init --no-clone-bundle --depth=1 --platform=linux -u ${AOSP_MIRROR} -b "$@" --reference=${LOS_MIRROR} --dissociate
-}
-
-function recoinit () {
-    repo init --no-clone-bundle --platform=linux -u https://github.com/"$1" -b "$2"
-}
-
-function aospinit () {
-	repo init --no-clone-bundle --depth=1 --platform=linux -u 	https://android.googlesource.com/platform/manifest -b "$@" --reference=${AOSP_MIRROR}
-}
-
-function losinit () {
-    repo init --no-clone-bundle --depth=1 --platform=linux -u https://github.com/LineageOS/android -b "$@" --reference=${LOS_MIRROR}
-}
-
-function starch () {
-	time repo start "$1" --all
-	time repo checkout "$1"
-	time repo branches -a
-}
+	# Check ssh-agent and load the proper
+	# keys for the defined user, check the
+	# connection and credentials. Return ssh
+	# verification and config options set.
+#}

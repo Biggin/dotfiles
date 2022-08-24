@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 # Options and configs from the 'standard' ~/.bashrc file
 # Make less more friendly for non-text input files, see lesspipe(1)

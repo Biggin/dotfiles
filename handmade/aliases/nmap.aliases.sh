@@ -14,8 +14,26 @@
 #  -sA - TCP ACK scan
 #  -F - fast scan
 #  --script=vuln - also access vulnerabilities in target
+
+#################################################
+#      -- Current script categories --
+# auth, broadcast, default, discovery, dos,
+# exploit, external, fuzzer, intrusive, malware,
+# safe, version, and vuln
+#################################################
+function nmap_script_cats () {
+	echo -ne "\t\tnmap script categories include: \n"
+	echo -ne "auth, broadcast, default, discovery, dos\n"
+	echo -ne "exploit, external, fuzzer, intrusive\n"
+	echo -ne "malware, safe, version and vuln\n\n"
+	echo -ne "Example: nmap -vv --script=safe,discovery 10.0.0.0/24"
+}
+
 alias aliases.nmap='nano $OSH_CUSTOM/aliases/nmap.aliases.sh'
 
+alias nmap.h="nmap --help"
+alias nmap.sh="nmap --script-help"
+alias nmap_cmds="bat ~/.local/share/nmap/cmd_cheatsheet.txt"
 alias nmap_open_ports="nmap -vv --open"
 alias nmap_list_interfaces="nmap --iflist"
 alias nmap_slow=" nmap -sS -vv -T1"

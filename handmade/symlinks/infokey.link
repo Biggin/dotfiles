@@ -1,4 +1,4 @@
 #var
-link-style=cyan,bold,underline
+link-style=cyan,underline
 active-link-style=magenta,underline
-match-style=yellow,nobold,nostandout
+match-style=yellow,bold,nostandout

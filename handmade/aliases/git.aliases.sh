@@ -3,6 +3,7 @@
 
 alias aliases.git='nano $OSH_CUSTOM/aliases/git.aliases.sh'
 
+
 #############
 #			#
 # FUNCTIONS #
@@ -32,6 +33,7 @@ function _git_log_prettily(){
     git log --pretty=$1
   fi
 }
+
 
 ###########
 #		  #

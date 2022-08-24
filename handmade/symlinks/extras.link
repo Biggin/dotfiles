@@ -1,0 +1,8 @@
+export PATH=~/.local/bin:${PATH}
+
+GitFile="${OSH_CUSTOM}/tools/git-user.sh"
+if [ -f $GitFile ]; then
+	bash $GitFile
+fi
+unset GitFile
+	

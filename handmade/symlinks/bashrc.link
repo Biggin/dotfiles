@@ -1,11 +1,13 @@
 # Path to your oh-my-bash installation.
 export OSH=${HOME}/.dotfiles
-#export PATH=~/.local/bin:${PATH}
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-bash is loaded.
+# Would you like to use another custom folder than $OSH/custom?
+OSH_CUSTOM=${OSH}/handmade
+
+# Set name of the theme to load.
 OSH_THEME="biggin"
 
+###############################################
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
 
@@ -41,8 +43,7 @@ DISABLE_AUTO_UPDATE="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $OSH/custom?
-OSH_CUSTOM=${OSH}/handmade
+###############################################
 
 # Which completions would you like to load? (completions can be found in ~/.oh-my-bash/completions/*)
 # Custom completions may be added to ~/.oh-my-bash/custom/completions/
@@ -59,11 +60,11 @@ completions=(
 # Add wisely, as too many aliases slow down shell startup.
 aliases=(
   bash
-  android
+#  android
   ls_exa
   git
 #  repo
-#  nmap
+  nmap
 )
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -76,9 +77,8 @@ plugins=(
 
 source ${OSH}/omy-bash.sh
 
+###############################################
 # User configuration
-# Enable colored man pages
-#export MANPAGER="most"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -90,12 +90,6 @@ source ${OSH}/omy-bash.sh
 #   export EDITOR='mvim'
 # fi
 export EDITOR='nano'
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-bash libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-bash
@@ -110,3 +104,4 @@ if [ -x $PREFIX/bin/dircolors ]; then
 	eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)
 fi
 
+#source ~/.extras

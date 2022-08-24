@@ -258,7 +258,7 @@ set functioncolor magenta
 include "/data/data/com.termux/files/usr/share/nano/*.nanorc"
 
 ## -- CLN --
-#include "/data/data/com.termux/files/usr/share/nano-syntax/*.nanorc"
+include "/data/data/com.termux/files/usr/share/nano-syntax/*.nanorc"
 
 ## Key bindings.
 ## See nanorc(5) (section REBINDING KEYS) for more details on this.
