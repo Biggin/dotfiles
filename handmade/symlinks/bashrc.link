@@ -1,5 +1,5 @@
 # Path to your oh-my-bash installation.
-export OSH=${HOME}/github/dotfiles
+export OSH=${HOME}/dotfiles
 #export PATH=~/.local/bin:${PATH}
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -104,7 +104,7 @@ export EDITOR='nano'
 #
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
-alias omy="nano $OSH/oh-my-bash.sh"
+alias omy="nano $OSH/omy-bash.sh"
 
 # Variables as shorthand for dirs to cd into
 #export usr="${PREFIX}"

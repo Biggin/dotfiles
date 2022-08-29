@@ -5,7 +5,7 @@
 
 # Specify desired highlighting theme (e.g. "TwoDark"). 
 # Run `bat --list-themes` for a list of all available themes
---theme="base16"
+--theme="brogrammer"
 --style="full"
 --decorations="always"
 --color="always"
