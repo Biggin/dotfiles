@@ -59,12 +59,13 @@ completions=(
 # Example format: aliases=(vagrant composer git-avh)
 # Add wisely, as too many aliases slow down shell startup.
 aliases=(
-  bash
 #  android
-  ls_exa
+  bash
+#  exa
   git
-#  repo
+  lsd
   nmap
+#  repo
 )
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)

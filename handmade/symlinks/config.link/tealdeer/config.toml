@@ -1,0 +1,39 @@
+[style.description]
+underline = true
+bold = true
+italic = true
+
+[style.command_name]
+foreground = "cyan"
+underline = false
+bold = true
+italic = true
+
+[style.example_text]
+foreground = "yellow"
+underline = false
+bold = false
+italic = false
+
+[style.example_code]
+foreground = "white"
+underline = false
+bold = false
+italic = true
+
+[style.example_variable]
+foreground = "purple"
+underline = true
+bold = true
+italic = true
+
+[display]
+compact = false
+use_pager = true
+
+[updates]
+auto_update = false
+auto_update_interval_hours = 720
+
+[directories]
+custom_pages_dir = "/data/data/com.termux/files/home/.local/share/tealdeer/pages/"

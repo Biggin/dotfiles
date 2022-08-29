@@ -28,10 +28,6 @@ alias 4='cd -4'
 alias 5='cd -5'
 alias 6='cd -6'
 
-alias sl='ls'
-alias l.='ls -d .*'
-alias lt="ll --time=created --sort=newest --reverse"
-alias d='dirs -v | head -10'
 
 ###############################################
 #
