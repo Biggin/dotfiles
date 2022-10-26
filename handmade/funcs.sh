@@ -113,6 +113,10 @@ function zipf () {
 	zip -r "$1".zip "$1"
 }
 
+function suffixed () {
+    fd -e $1 -x mv {} {.}.$2
+}
+
 function bakup () {
 	local filetime filename
 	filename=$1
@@ -199,7 +203,6 @@ function add2Path () {
 }
 
 
-
 ###############################################
 #
 # Next 'BIG' idea   ...(insert here)...
@@ -232,3 +235,4 @@ function add2Path () {
 	# connection and credentials. Return ssh
 	# verification and config options set.
 #}
+
