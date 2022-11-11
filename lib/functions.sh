@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 function bash_stats() {
   fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n20
 }
@@ -9,11 +9,6 @@ function uninstall_oh_my_bash() {
 
 function upgrade_oh_my_bash() {
   env OSH=$OSH sh $OSH/tools/upgrade.sh
-}
-
-function take() {
-  mkdir -p "$1"
-  cd "$1" || exit
 }
 
 function open_command() {

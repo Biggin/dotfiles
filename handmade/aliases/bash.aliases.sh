@@ -68,9 +68,13 @@ alias 700='chmod 700'
 alias 755='chmod 755'
 alias 777='chmod 777'
 alias own="chown -R `whoami`:`whoami`"
-alias diff='diff --color=always'
-alias diffy='diff -yw --suppress-common-lines'
+alias diff='diff --color=always --suppress-common-lines'
+alias diffy='diff -yw'
+alias grep='grep -RHin'
+alias grev='grep -v'
 alias r='fc -s'
+alias hd='hexdump'
+alias hdc='hexdump -C'
 alias c='bat'
 alias cb='bat -l bash'
 alias blist='bat --list-themes'
@@ -79,10 +83,8 @@ alias bconfig='nash ~/.config/bat/config'
 alias nums='cat -ns'
 alias back="tac -r -s 'x\|[^x]' "
 alias untar='tar -xvf'
-alias ifile='file -i'
 alias file='file -s -z'
 alias fhere='find . -name '
-alias forkat='fortune | lolcat'
 alias resync='rsync -ihavEz --links --update --stats --progress'
 
 ## File removal "securely" for the noid...
@@ -114,8 +116,8 @@ alias setsave='echo "powersave" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/
 #       Internet & networking calls
 #
 ###############################################
-alias wg='wget2'
-alias wget2='wget2 -c -p --progress=bar --force-progress'
+#alias wg='wget2'
+alias wg='wget2 -c -p --progress=bar --force-progress'
 alias iface="ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'"
 alias net='curl ipinfo.io'
 alias inet="curl -w '\n' ipinfo.io/ip"
@@ -124,46 +126,7 @@ alias ping='ping -c 10'
 alias ports='netstat -tulanp'
 alias chains='proxychains4'
 alias rfkill='rfkill --output DEVICE,ID,TYPE,TYPE-DESC,SOFT,HARD'
-alias genkeys='eval $(ssh-agent -s); ssh-keygen -t ed25519 -C'
-
-###############################################
-#
-#       Aliases for package management
-#
-###############################################
-alias ag='apt-get'
-alias ai='apt-get install'
-alias afb='apt --fix-broken install'
-alias ap='apt-get purge'
-alias al='apt list'
-alias ali='al --installed'
-alias alig='ali | grep'
-alias as='apt search'
-alias asho='apt show'
-alias au='apt-get update'
-alias auu='au && apt-get upgrade'
-alias clapt='apt autoremove && apt remove && apt autoclean && apt clean'
-
-## Termux specific package commands
-alias pk.fl='pkg files'
-alias pk.la='pkg list-all'
-alias pk.li='pkg list-installed'
-alias pk.ug='pkg upgrade'
-alias pk.sw='pkg show'
-alias pk.sr='pkg search'
-
-## Dpkg simplification
-alias dp='dpkg'
-alias dp.h='dpkg --help'
-alias dp.fh='dpkg --force-help'
-alias dp.i='dpkg -i'
-alias dp.lp='dpkg -l'
-alias dp.lg='dp.lp | grep'
-alias dp.lf='dpkg -L'
-alias dp.s='dpkg -S'
-alias dp.con='dpkg --configure -a'
-#: Sort by amount of disk space currently used by the program
-alias dp.ss="dpkg-query -W --showformat='${Installed-Size} ${Package}\n' | sort -nr | less"
+alias genkeys='eval $(ssh-agent -s); ssh-keygen -t ed25519 -b 4096 -C'
 
 ###############################################
 #
@@ -197,6 +160,6 @@ alias megaput.k="megaput --config=${creds}/.kyle.megarc --enable-previews --path
 #    around with and adding functionality
 #
 ###############################################
-alias root="python2 ${HOME}/github/FakeRoot/root.py"
-alias seeker="python ${HOME}/github/seeker/seeker.py"
-alias proxy="bash $HOME/github/Free-Proxy/FreeProxy.sh"
+#alias root="python2 ${HOME}/github/FakeRoot/root.py"
+#alias seeker="python ${HOME}/github/seeker/seeker.py"
+#alias proxy="bash $HOME/github/Free-Proxy/FreeProxy.sh"

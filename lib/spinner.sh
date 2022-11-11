@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 #
 # Move a process to background and track its progress in a smoothier way.
 # Could be use if $TERM not set.

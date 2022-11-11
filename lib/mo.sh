@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 #
 #/ Mo is a mustache template rendering software written in bash.  It inserts
 #/ environment variables into templates.

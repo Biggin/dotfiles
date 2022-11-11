@@ -1,0 +1,63 @@
+# Set the UI theme to black
+use-black-ui = true
+
+# Use the full available screen fullscreen = true
+use-fullscreen-workaround = true
+
+# Configure back button behaviour
+#back-key = escape
+back-key = back
+
+# Open a new terminal with 'ctrl + t' or 'volume down + t'
+shortcut.create-session = ctrl + t
+
+# Go one session down with 'ctrl + 1' or 'volume down + 1'
+shortcut.next-session = ctrl + 1
+
+# Go one session up with 'ctrl + 0' or 'volume down + 0'
+shortcut.previous-session = ctrl + 2
+
+# Rename a session with 'ctrl + n' or 'volume down + n'
+shortcut.rename-session = ctrl + n
+
+# Vibrate device (default).
+bell-character = vibrate
+
+# Beep with a sound.
+#bell-character = beep
+
+# Ignore bell character.
+#bell-character = ignore
+
+run-termux-am-socket-server=true
+
+extra-keys = [ \
+ ['ESC','|','/','HOME','UP','END','PGUP','DEL'], \
+ ['TAB','CTRL','ALT','LEFT','DOWN','RIGHT','PGDN','BKSP'] \
+]
+
+##### Extended Extra-Keys Configuration
+# In Termux v0.95 extra keys configuration was extended with configurable popups. Popups keys can be triggered by swiping up on the respective keys.
+
+# Here is a syntax for key definition with popup:
+
+# {key: KEY, popup: POPUP_KEY}
+
+# and here is a syntax for a more advanced key:
+
+# {key: KEY, popup: {macro: 'KEY COMBINATION', display: 'Key combo'}}
+
+# Example of advanced extra keys configuration:
+
+#extra-keys = [[ \
+#  {key: ESC, popup: {macro: "CTRL d", display: "tmux exit"}}, \
+#  {key: CTRL, popup: {macro: "CTRL f BKSP", display: "tmux ←"}}, \
+#  {key: ALT, popup: {macro: "CTRL f TAB", display: "tmux →"}}, \
+#  {key: TAB, popup: {macro: "ALT a", display: A-a}}, \
+#  {key: LEFT, popup: HOME}, \
+#  {key: DOWN, popup: PGDN}, \
+#  {key: UP, popup: PGUP}, \
+#  {key: RIGHT, popup: END}, \
+#  {macro: "ALT j", display: A-j, popup: {macro: "ALT g", display: A-g}}, \
+#  {key: KEYBOARD, popup: {macro: "CTRL d", display: exit}} \
+#]]
