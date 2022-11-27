@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export LESS='-RFXia#.5'
+export LESS='-RFXia#.5 --mouse'
 export PAGER="${PAGER:-less}"
 
 ## Enable colored man-page output

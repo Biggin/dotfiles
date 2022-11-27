@@ -166,15 +166,3 @@ fi
 if ! type_exists '__git_ps1' ; then
   source "$OSH/tools/git-prompt.sh"
 fi
-<<<<<<< HEAD
-||||||| parent of 76df9cb (Fixed files for use on Termux, updating paths and configs)
-
-# Adding Support for other OSes
-[ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview" ||
-[ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app" || PREVIEW="less"
-=======
-
-# Adding Support for other OSes
-#[ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview" ||
-#[ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app" || PREVIEW="less"
->>>>>>> 76df9cb (Fixed files for use on Termux, updating paths and configs)

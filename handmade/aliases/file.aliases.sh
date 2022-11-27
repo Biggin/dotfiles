@@ -1,21 +1,19 @@
 #: An alias file for faster calls of file manipulation commands
-#tmpdir="~/.local/tmp/services/rsync"
-
 alias aliases.file="nano $OSH_CUSTOM/aliases/file.aliases.sh"
 
 #-----------------------------------------#
 #       Startup files & Permissions		  #
 #-----------------------------------------#
 alias src="source ~/.bashrc"
-alias 000='chmod 000'
-alias 600='chmod 600'
-alias 644='chmod 644'
-alias 700='chmod 700'
-alias 755='chmod 755'
-alias 777='chmod 777'
-alias moda='chmod a+x'
-alias modu='chmod u+x'
-alias own="chown -R `whoami`:`whoami`"
+alias 000='sudo chmod 000'
+alias 600='sudo chmod 600'
+alias 644='sudo chmod 644'
+alias 700='sudo chmod 700'
+alias 755='sudo chmod 755'
+alias 777='sudo chmod 777'
+alias moda='sudo chmod a+x'
+alias modu='sudo chmod u+x'
+alias own="sudo chown -R `whoami`:`whoami`"
 alias path='echo -e ${PATH//:/\\n}'
 
 #------  Config file editing  -------#
@@ -26,7 +24,6 @@ alias bcfg='nano ~/.config/bat/config'
 alias ccfg='nano ~/.config/ccache/ccache.conf'
 alias dcfg='nano ~/.local/share/delta/delta.gitconfig'
 alias gcfg='nano ~/.gitconfig'
-alias tcfg="nano ~/.termux/termux.properties"
 
 
 #------------------------------------#
@@ -48,11 +45,12 @@ alias r='fc -s'
 alias hd='hexdump'
 alias hdc='hexdump -C'
 alias fd='fd -LH -i'
+alias bat='batcat'
 alias c='bat'
 alias cb='bat -l bash'
 alias blist='bat --list-themes'
 alias blang='bat --list-languages'
-alias dcfg.ls='delta --show-config'
+alias dls='delta --show-config'
 alias dlist='delta --show-syntax-themes'
 alias dlang='delta --list-languages'
 alias nums='cat -ns'
@@ -63,7 +61,7 @@ alias cpv='rsync -avuz --progress'
 #alias resync="rsync -avhiuz -AEIX -T $tmpdir --stats --progress --preallocate --fake-super --mkpath --inplace"
 
 function resync () {
-	local tmpdir="$PREFIX/var/service/rsync"
+	local tmpdir="~/.local/tmp/rsync"
 
 	if [ ! -d $tmpdir ]; then
 		mkdir -p $tmpdir &> /dev/null || return 13
@@ -73,15 +71,15 @@ function resync () {
 }
 
 #------  Secure File Removal  -------#
-alias sub='scrub -SRtfr -p pfitzner33'
-alias bish='scrub -SRfr -p pfitzner33 ~/.bash_history ~/.lesshst'
-alias shard='shred -fzn 23 --remove=wipe'
+alias sub='sudo scrub -SRtfr -p pfitzner33'
+alias bish='sudo scrub -SRfr -p pfitzner33 ~/.bash_history ~/.lesshst'
+alias shard='sudo shred -fzn 23 --remove=wipe'
 
 #-----------  Disk Usage  -----------#
-alias du='du -chL'
-alias used='du -sh --time'
-alias df='df -H'
-alias free='free -lh --total'
+alias du='sudo du -chL'
+alias used='sudo du -sh --time'
+alias df='sudo df -H'
+alias free='sudo free -lh --total'
 
 
 #----------------------------------------------#

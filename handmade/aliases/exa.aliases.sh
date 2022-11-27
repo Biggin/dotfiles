@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Aliases for using exa as a stand-in for ls
 alias aliases.exa='nano $OSH_CUSTOM/aliases/exa.aliases.sh'
 
