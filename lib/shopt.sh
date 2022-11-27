@@ -8,9 +8,6 @@
 # Use `>|` to force redirection to an existing file
 set -o noclobber
 
-# Update window size after every command
-shopt -s checkwinsize
-
 # Automatically trim long paths in the prompt (requires Bash 4.x)
 PROMPT_DIRTRIM=3
 
@@ -22,15 +19,18 @@ bind Space:magic-space
 shopt -s globstar 2> /dev/null
 
 # Case-insensitive globbing (used in pathname expansion)
-#shopt -s nocaseglob;
+shopt -s nocaseglob 2> /dev/null
+
+# Update window size after every command
+shopt -s checkwinsize 2> /dev/null
 
 ## SMARTER TAB-COMPLETION (Readline bindings) ##
 
 # Perform file completion in a case insensitive fashion
-#bind "set completion-ignore-case on"
+# bind "set completion-ignore-case on"
 
 # Treat hyphens and underscores as equivalent
-#bind "set completion-map-case on"
+# bind "set completion-map-case on"
 
 # Display matches for ambiguous patterns at first tab press
 #bind "set show-all-if-ambiguous on"
@@ -41,17 +41,30 @@ bind "set mark-symlinked-directories on"
 ## BETTER DIRECTORY NAVIGATION ##
 
 # Prepend cd to directory names automatically
-#shopt -s autocd 2> /dev/null
+shopt -s autocd 2> /dev/null
 # Correct spelling errors during tab-completion
-#shopt -s dirspell 2> /dev/null
+shopt -s dirspell 2> /dev/null
 # Correct spelling errors in arguments supplied to cd
-#shopt -s cdspell 2> /dev/null
+shopt -s cdspell 2> /dev/null
 
-# This defines where cd looks for targets
-# Add the directories you want to have fast access to, separated by colon
+# This defines where cd looks for targets, add directories you want to have fast access to, separated by colon
 # Ex: CDPATH=".:~:~/projects" will look for targets in the current working directory, in home and in the ~/projec
-CDPATH="."
+CDPATH=".:~:~/github:~/Desktop"
 
 # This allows you to bookmark your favorite places across the file system
 # Define a variable containing a path and you will be able to cd into it regardless of the directory you're in
-#shopt -s cdable_vars
+shopt -s cdable_vars
+
+export bin="$HOME/bin"
+export obin="/opt/bin"
+export tools="$bin/android"
+export hand="$HOME/.dotfiles/handmade"
+export sdk="/opt/sdk"
+export studio="/opt/android-studio"
+export tc="/opt/toolchains"
+export dl="$HOME/Download"
+export doc="$HOME/Documents"
+export pic="$HOME/Pictures"
+export play="$HOME/source"
+export grub="/boot/grub"
+export idea="/opt/intellij-IDEA"

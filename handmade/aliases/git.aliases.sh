@@ -1,14 +1,5 @@
-## Git aliases borrowed from the oh-my-bash git plugin and
-## modified for my use on various systems
-
-<<<<<<< HEAD
-alias aliases.git="nano $OSH_CUSTOM/aliases/git.aliases.sh"
-||||||| parent of 76df9cb (Fixed files for use on Termux, updating paths and configs)
+# Git aliases borrowed from the oh-my-bash git plugin and modified for my use on various systems
 alias aliases.git='nano $OSH_CUSTOM/aliases/git.aliases.sh'
-#alias git='hub'
-=======
-alias aliases.git='nano $OSH_CUSTOM/aliases/git.aliases.sh'
->>>>>>> 76df9cb (Fixed files for use on Termux, updating paths and configs)
 
 
 ###############
@@ -41,13 +32,11 @@ function _git_log_prettily() {
   fi
 }
 
-<<<<<<< HEAD
 # cd to the ROOT of the worktree
 function cg () {
 	cd $(git rev-parse --show-toplevel)
 }
 
-||||||| parent of 76df9cb (Fixed files for use on Termux, updating paths and configs)
 # Warn if the current branch is a WIP
 function work_in_progress() {
   if $(git log -n 1 2>/dev/null | grep -q -c "\-\-wip\-\-"); then
@@ -55,12 +44,7 @@ function work_in_progress() {
   fi
 }
 
-###########
-#		  #
-# Aliases #
-#		  #
-###########
-=======
+
 ###########
 #		  #
 # Aliases #
@@ -135,11 +119,6 @@ alias git.dw='git diff --word-diff'
 alias git.dct='git describe --tags `git rev-list --tags --max-count=1`'
 alias git.dtr='git diff-tree --no-commit-id --name-only -r'
 
-gdv() {
-  git diff -w "$@" | view -
-}
-#compdef _git gdv=git-diff
-
 alias git.f='git fetch'
 #compdef _git git.f=git-fetch
 alias git.fo='git fetch origin'
@@ -149,11 +128,6 @@ alias git.fa='git fetch --all --prune'
 
 alias git.push='git push origin $(git_current_branch)'
 #compdef _git git.push=git-checkout
-
-gfg() {
-  git ls-files | grep "$@"
-}
-#compdef _grep gfg
 
 alias git.pull='git pull origin $(git_current_branch)'
 #compdef _git git.pull=git-checkout

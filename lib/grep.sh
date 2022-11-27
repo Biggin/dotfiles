@@ -4,7 +4,10 @@ grep_flag_available() {
     echo | grep $1 "" >/dev/null 2>&1
 }
 
-GREP_OPTIONS="--color=always"
+# color grep results
+if grep_flag_available --color=auto; then
+    GREP_OPTIONS+=( " --color=auto" )
+fi
 
 # ignore VCS folders (if the necessary grep flags are available)
 VCS_FOLDERS="{.bzr,CVS,.git,.hg,.svn}"

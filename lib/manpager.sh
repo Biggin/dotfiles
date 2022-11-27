@@ -16,12 +16,12 @@ export PAGER="${PAGER:-less}"
 function man () {
 	command -p env \
 	  LESS_TERMCAP_mb="$(printf '\e[1;31m')" \
-      LESS_TERMCAP_md="$(printf '\e[1;38;5;39m')" \
+      LESS_TERMCAP_md="$(printf '\e[1;38;5;40m')" \
+      LESS_TERMCAP_so="$(printf '\e[1;3;46;33m')" \
+      LESS_TERMCAP_us="$(printf '\e[4;38;5;215m')" \
       LESS_TERMCAP_me="$(printf '\e[0m')" \
       LESS_TERMCAP_se="$(printf '\e[0m')" \
-      LESS_TERMCAP_so="$(printf '\e[1;44;33m')" \
       LESS_TERMCAP_ue="$(printf '\e[0m')" \
-      LESS_TERMCAP_us="$(printf '\e[4;38;5;215m')" \
       GROFF_NO_SGR="yes" \
       man "$@"
 }

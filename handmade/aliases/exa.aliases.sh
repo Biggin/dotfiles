@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Aliases for using exa as a stand-in for ls
 alias aliases.exa='nano $OSH_CUSTOM/aliases/exa.aliases.sh'
 
@@ -14,7 +15,7 @@ alias lp='la -lhbr -s size --octal-permissions --no-permissions --no-user --no-t
 alias ll='la --long -hbSg@ --sort=Name --changed'
 alias lr='la -R --level=5 | less'
 alias d='dirs -v | head -10'
-alias tree='la --tree --level=3'
+alias tree='la --tree --level=3 | less'
 
 # Display entries listed by corresponding time fields
 alias lm='la -lhbS@m  --no-user --no-permissions --sort=modified'

@@ -1,5 +1,5 @@
 # Path to your oh-my-bash installation.
-export OSH=${HOME}/github/dotfiles
+export OSH=${HOME}/.dotfiles
 #export PATH=~/.local/bin:${PATH}
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -61,7 +61,7 @@ aliases=(
   android
   bash
   git
-  ls_exa
+  exa
   nmap
 #  repo
 )
@@ -74,14 +74,16 @@ plugins=(
   bashmarks
 )
 
-source ${OSH}/oh-my-bash.sh
+source ${OSH}/omy-bash.sh
 
 # User configuration
 # Enable colored man pages
-#export MANPAGER="most"
+#export LESS="less -FRX"
+#export PAGER="$LESS"
+#export MANPAGER="$PAGER"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -89,10 +91,10 @@ source ${OSH}/oh-my-bash.sh
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR='nano'
+export EDITOR='nano -W'
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -104,12 +106,6 @@ export EDITOR='nano'
 #
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
-alias omy="nano $OSH/oh-my-bash.sh"
+alias omy="nano $OSH/omy-bash.sh"
 
-# Variables as shorthand for dirs to cd into
-#export usr="${PREFIX}"
-#export sd="${HOME}/storage/shared"
-#export down="${HOME}/storage/downloads"
-#export hand="${HOME}/.dotfiles/handmade"
-
-eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)
+#eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)
