@@ -1,3 +1,5 @@
+alias aliases.repo='nano ${OSH_CUSTOM}/aliases/repo.aliases.sh'
+
 # Repo calls with various flags I'm too lazy to type each time
 function respo () {
     repo sync --force-sync --no-clone-bundle --current-branch --no-tags --optimized-fetch -j4 "$@"

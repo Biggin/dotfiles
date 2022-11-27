@@ -9,10 +9,10 @@ THEME_PROMPT_HOST='\H'
 
 SCM_CHECK=${SCM_CHECK:=true}
 
-SCM_THEME_PROMPT_DIRTY=' ✗'
-SCM_THEME_PROMPT_CLEAN=' ✓'
-SCM_THEME_PROMPT_PREFIX=' |'
-SCM_THEME_PROMPT_SUFFIX='|'
+SCM_THEME_PROMPT_DIRTY=${bold_red}' ✗'${reset_color}
+SCM_THEME_PROMPT_CLEAN=${bold_black}' ✓'${reset_color}
+SCM_THEME_PROMPT_PREFIX=${bold_green}' ['${reset_color}
+SCM_THEME_PROMPT_SUFFIX=${bold_green}']'${reset_color}
 SCM_THEME_BRANCH_PREFIX=''
 SCM_THEME_TAG_PREFIX='tag:'
 SCM_THEME_DETACHED_PREFIX='detached:'
@@ -34,11 +34,11 @@ SCM_GIT_SHOW_MINIMAL_INFO=${SCM_GIT_SHOW_MINIMAL_INFO:=false}
 SCM_GIT='git'
 SCM_GIT_CHAR='±'
 SCM_GIT_DETACHED_CHAR='⌿'
-SCM_GIT_AHEAD_CHAR="↑"
-SCM_GIT_BEHIND_CHAR="↓"
-SCM_GIT_UNTRACKED_CHAR="?:"
-SCM_GIT_UNSTAGED_CHAR="U:"
-SCM_GIT_STAGED_CHAR="S:"
+SCM_GIT_AHEAD_CHAR=${cyan}"↑"${reset_color}
+SCM_GIT_BEHIND_CHAR=${cyan}"↓"${reset_color}
+SCM_GIT_UNTRACKED_CHAR=${bold_yellow}"?:"${reset_color}
+SCM_GIT_UNSTAGED_CHAR=${bold_purple}"U:"${reset_color}
+SCM_GIT_STAGED_CHAR=${green}"S:"${reset_color}
 
 SCM_HG='hg'
 SCM_HG_CHAR='☿'
@@ -446,7 +446,7 @@ function user_host_prompt {
 # backwards-compatibility
 function git_prompt_info {
   git_prompt_vars
-  echo -e "${SCM_PREFIX}${SCM_BRANCH}${SCM_STATE}${SCM_SUFFIX}"
+  echo -e "${SCM_PREFIX}${bold_cyan}${SCM_BRANCH}${reset_color}${SCM_STATE}${SCM_SUFFIX}"
 }
 
 function svn_prompt_info {

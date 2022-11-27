@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-OSH=$HOME/github/dotfiles
+OSH=$HOME/.dotfiles
 
 # Bail out early if non-interactive
 case $- in
@@ -24,9 +24,9 @@ fi
 
 # Set OSH_CACHE_DIR to the path where cache files should be created
 # or else we will use the default cache/
-#if [[ -z "$OSH_CACHE_DIR" ]]; then
-#  OSH_CACHE_DIR="$OSH/cache"
-#fi
+if [[ -z "$OSH_CACHE_DIR" ]]; then
+  OSH_CACHE_DIR="$OSH/cache"
+fi
 
 # Load all of the config files in ~/.oh-my-bash/lib that end in .sh
 # TIP: Add files you don't want in git to .gitignore
@@ -126,8 +126,8 @@ done
 unset config_file
 
 # Load colors first so they can be use in base theme
-source "${OSH_CUSTOM}/themes/colours.theme.sh"
-source "${OSH_CUSTOM}/themes/base.theme.sh"
+source "${OSH}/themes/colours.theme.sh"
+source "${OSH}/themes/base.theme.sh"
 
 # Load the theme
 if [ "$OSH_THEME" = "random" ]; then
@@ -154,11 +154,9 @@ if [[ $PROMPT ]]; then
 fi
 
 if ! type_exists '__git_ps1' ; then
-  source "$OSH_CUSTOM/tools/git-prompt.sh"
+  source "${OSH}/tools/git-prompt.sh"
 fi
 
 # Adding Support for other OSes
 [ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview" ||
 [ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app" || PREVIEW="less"
-
-ln -sf $OSH $HOME/.dotfiles
