@@ -2,6 +2,7 @@
 ## modified for my use on various systems
 
 alias aliases.git='nano $OSH_CUSTOM/aliases/git.aliases.sh'
+alias gcfg='nano ~/.gitconfig'
 
 #############
 #			#
