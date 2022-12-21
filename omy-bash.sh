@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-#OSH=${HOME}/dotfiles
+#!/data/data/com.termux/files/usr/bin/env bash
+OSH=${HOME}/.dotfiles
 
 # Bail out early if non-interactive
 case $- in
@@ -14,24 +14,25 @@ fi
 
 # Initializes Oh My Bash
 # add a function path
-fpath=($OSH_CUSTOM/functions $fpath)
+fpath=($OSH/functions $fpath)
 
 # Set OSH_CUSTOM to the path where your custom config files
 # and plugins exists, or else we will use the default custom/
 if [[ -z "$OSH_CUSTOM" ]]; then
-    OSH_CUSTOM="$OSH/custom"
+    OSH_CUSTOM="$OSH/handmade"
 fi
 
 # Set OSH_CACHE_DIR to the path where cache files should be created
 # or else we will use the default cache/
 if [[ -z "$OSH_CACHE_DIR" ]]; then
-  OSH_CACHE_DIR="$OSH/cache"
+  OSH_CACHE_DIR="$HOME/.cache"
 fi
 
 # Load all of the config files in ~/.oh-my-bash/lib that end in .sh
 # TIP: Add files you don't want in git to .gitignore
 for config_file in $OSH/lib/*.sh; do
-  custom_config_file="${OSH_CUSTOM}/lib/${config_file:t}"
+    custom_config_file="${OSH_CUSTOM}/lib/${config_file}"
+#${config_file:t}"
   [ -f "${custom_config_file}" ] && config_file=${custom_config_file}
   source $config_file
 done
@@ -82,14 +83,6 @@ for alias in ${aliases[@]}; do
   fi
 done
 
-# Figure out the SHORT hostname
-if [[ "$OSTYPE" = darwin* ]]; then
-  # macOS's $HOST changes with dhcp, etc. Use ComputerName if possible.
-  SHORT_HOST=$(scutil --get ComputerName 2>/dev/null) || SHORT_HOST=${HOST/.*/}
-else
-  SHORT_HOST=${HOST/.*/}
-fi
-
 # Load all of the plugins that were defined in ~/.bashrc
 for plugin in ${plugins[@]}; do
   if [ -f $OSH_CUSTOM/plugins/$plugin/$plugin.plugin.sh ]; then
@@ -125,9 +118,9 @@ for config_file in $OSH_CUSTOM/*.sh; do
 done
 unset config_file
 
-# Load colors first so they can be use in base theme
-source "${OSH_CUSTOM}/themes/colours.theme.sh"
-source "${OSH_CUSTOM}/themes/base.theme.sh"
+# Load colors first so they can be used in base theme
+source ${OSH}/themes/colours.theme.sh
+source ${OSH}/themes/base.theme.sh
 
 # Load the theme
 if [ "$OSH_THEME" = "random" ]; then
@@ -154,9 +147,5 @@ if [[ $PROMPT ]]; then
 fi
 
 if ! type_exists '__git_ps1' ; then
-  source "${OSH_CUSTOM}/tools/git-prompt.sh"
+  source "${OSH}/tools/git-prompt.sh"
 fi
-
-# Adding Support for other OSes
-[ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview" ||
-[ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app" || PREVIEW="less"

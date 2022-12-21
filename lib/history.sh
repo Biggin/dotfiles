@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 ## Command history configuration
 if [ -z "$HISTFILE" ]; then
-  HISTFILE=$HOME/.bash_history
+  HISTFILE=${HOME}/.bash_history
 fi
 
 ## SANE HISTORY DEFAULTS ##
@@ -19,7 +19,7 @@ shopt -s histreedit
 # load history line onto readline buffer for editing
 shopt -s histverify
 
-# save history with newlines instead of ; where possible
+# save history with newlines instead of  where possible
 shopt -s lithist
 
 # Record each line as it gets issued
@@ -33,7 +33,7 @@ HISTFILESIZE=100000
 HISTCONTROL="erasedups:ignoreboth"
 
 # Don't record some commands
-export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:reboot:poweroff"
+export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:reboot:poweroff:help"
 
 # Use standard ISO 8601 timestamp
 # %F equivalent to %Y-%m-%d

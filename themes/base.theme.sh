@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 CLOCK_CHAR_THEME_PROMPT_PREFIX=''
 CLOCK_CHAR_THEME_PROMPT_SUFFIX=''
@@ -9,15 +9,15 @@ THEME_PROMPT_HOST='\H'
 
 SCM_CHECK=${SCM_CHECK:=true}
 
-SCM_THEME_PROMPT_DIRTY=' ✗'
-SCM_THEME_PROMPT_CLEAN=' ✓'
-SCM_THEME_PROMPT_PREFIX=' |'
-SCM_THEME_PROMPT_SUFFIX='|'
+SCM_THEME_PROMPT_DIRTY=${echo_bold_red}' ✗'${echo_reset_color}
+SCM_THEME_PROMPT_CLEAN=${echo_bold_green}' ✓'${echo_reset_color}
+SCM_THEME_PROMPT_PREFIX=${echo_white}' ['${echo_reset_color}
+SCM_THEME_PROMPT_SUFFIX=${echo_white}']'${echo_reset_color}
 SCM_THEME_BRANCH_PREFIX=''
-SCM_THEME_TAG_PREFIX='tag:'
-SCM_THEME_DETACHED_PREFIX='detached:'
-SCM_THEME_BRANCH_TRACK_PREFIX=' → '
-SCM_THEME_BRANCH_GONE_PREFIX=' ⇢ '
+SCM_THEME_TAG_PREFIX=${echo_purple}'tag${echo_bold_blue}:'${echo_reset_color}
+SCM_THEME_DETACHED_PREFIX=${echo_orange}'detached${echo_bold_blue}:'${echo_reset_color}
+SCM_THEME_BRANCH_TRACK_PREFIX=${echo_bold_yellow}' → '${echo_reset_color}
+SCM_THEME_BRANCH_GONE_PREFIX=${echo_red}' ⇢ '${echo_reset_color}
 SCM_THEME_CURRENT_USER_PREFFIX=' ☺︎ '
 SCM_THEME_CURRENT_USER_SUFFIX=''
 SCM_THEME_CHAR_PREFIX=''
@@ -32,16 +32,15 @@ SCM_GIT_SHOW_CURRENT_USER=${SCM_GIT_SHOW_CURRENT_USER:=false}
 SCM_GIT_SHOW_MINIMAL_INFO=${SCM_GIT_SHOW_MINIMAL_INFO:=false}
 
 SCM_GIT='git'
-SCM_GIT_CHAR='±'
-SCM_GIT_DETACHED_CHAR='⌿'
-SCM_GIT_AHEAD_CHAR="↑"
-SCM_GIT_BEHIND_CHAR="↓"
-SCM_GIT_UNTRACKED_CHAR="?:"
-SCM_GIT_UNSTAGED_CHAR="U:"
-SCM_GIT_STAGED_CHAR="S:"
+SCM_GIT_CHAR=${echo_blue}"±"${echo_reset_color}
+SCM_GIT_DETACHED_CHAR=${echo_orange}"⌿"${echo_reset_color}
+SCM_GIT_AHEAD_CHAR=${echo_green}"↑"${echo_reset_color}
+SCM_GIT_BEHIND_CHAR=${echo_red}"↓"${echo_reset_color}
+SCM_GIT_UNTRACKED_CHAR=${echo_bold_yellow}"?${echo_bold_blue}:"${echo_reset_color}
+SCM_GIT_UNSTAGED_CHAR=${echo_bold_purple}"U${echo_bold_blue}:"${echo_reset_color}
+SCM_GIT_STAGED_CHAR=${echo_bold_green}"S${echo_bold_blue}:"${echo_reset_color}
 
-SCM_HG='hg'
-SCM_HG_CHAR='☿'
+SCM_HG='hg' SCM_HG_CHAR='☿'
 
 SCM_SVN='svn'
 SCM_SVN_CHAR='⑆'
@@ -160,7 +159,7 @@ function git_prompt_minimal_info {
     # Output the git prompt
     SCM_PREFIX=${SCM_THEME_PROMPT_PREFIX}
     SCM_SUFFIX=${SCM_THEME_PROMPT_SUFFIX}
-    echo -e "${SCM_PREFIX}${SCM_BRANCH}${SCM_STATE}${SCM_SUFFIX}"
+    echo -ne "${SCM_PREFIX}${echo_cyan}${SCM_BRANCH}${SCM_STATE}${SCM_SUFFIX}"
   fi
 }
 
@@ -446,7 +445,7 @@ function user_host_prompt {
 # backwards-compatibility
 function git_prompt_info {
   git_prompt_vars
-  echo -e "${SCM_PREFIX}${SCM_BRANCH}${SCM_STATE}${SCM_SUFFIX}"
+  echo -e "${SCM_PREFIX}${echo_cyan}${SCM_BRANCH}${echo_reset_color}${SCM_STATE}${SCM_SUFFIX}"
 }
 
 function svn_prompt_info {
@@ -522,7 +521,6 @@ function safe_append_prompt_command {
        append_prompt_command_override $1
        return
     fi
-
     if [[ ${PROMPT_COMMAND} =~ ${prompt_re} ]]; then
       return
     elif [[ -z ${PROMPT_COMMAND} ]]; then

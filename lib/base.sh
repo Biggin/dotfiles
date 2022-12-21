@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 #  ---------------------------------------------------------------------------
 #
 #  Description:  This file holds all base BASH functions
@@ -34,7 +34,7 @@
 
 #   showa: to remind yourself of an alias (given some part of it)
 #   ------------------------------------------------------------
-    showa () { /usr/bin/grep --color=always -i -a1 "$@" ~/Library/init/bash/aliases.bash | grep -v '^\s*$' | less -FSRXc ; }
+#    showa () { /usr/bin/grep --color=always -i -a1 "$@" ~/Library/init/bash/aliases.bash | grep -v '^\s*$' | less -FSRXc ; }
 
 #   quiet: mute output of a command
 #   ------------------------------------------------------------
@@ -45,19 +45,11 @@
 #   lsgrep: search through directory contents with grep
 #   ------------------------------------------------------------
 # shellcheck disable=SC2010
-    lsgrep () { ls | grep "$*" ; }
-
-#   banish-cookies: redirect .adobe and .macromedia files to /dev/null
-#   ------------------------------------------------------------
-#    banish-cookies () {
-#      rm -r ~/.macromedia ~/.adobe
-#      ln -s /dev/null ~/.adobe
-#      ln -s /dev/null ~/.macromedia
-#    }
+#    lsgrep () { ls | grep "$*" ; }
 
 #   show the n most used commands. defaults to 10
 #   ------------------------------------------------------------
-#    hstats() {
+#    cmd_stats() {
 #      if [[ $# -lt 1 ]]; then
 #        NUM=10
 #      else
@@ -235,7 +227,7 @@
 #      (find . -type d -print0 | xargs -0 chmod 0755) &
 #      spinner
 #      echo -ne "${echo_normal}"
-#      
+#
 #      echo -ne "${echo_bold_blue}Applying 0644 permission for all files..."
 #      (find . -type f -print0 | xargs -0 chmod 0644) &
 #      spinner

@@ -4,9 +4,8 @@
 #		    #
 #############
 
-###############################################
 alias aliases.repo='nano ${OSH_CUSTOM}/aliases/repo.aliases.sh'
-y
+
 alias rstat='repo status'
 alias reman='repo manifest'
 alias rebra='repo branches'

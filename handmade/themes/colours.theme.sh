@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 function __ {
   echo "$@"
@@ -13,7 +13,6 @@ function __make_echo {
   next=$1; shift
   echo "\033[$(__$next $@)m"
 }
-
 
 function __reset {
   next=$1; shift
@@ -57,7 +56,6 @@ function __crossed {
   echo "${out:+${out};}8"
 }
 
-
 function __color_normal_fg {
   echo "3$1"
 }
@@ -73,7 +71,6 @@ function __color_bright_fg {
 function __color_bright_bg {
   echo "10$1"
 }
-
 
 function __color_black   {
   echo "0"
@@ -130,7 +127,6 @@ function __color {
   echo "$(__color_${mode}_${side} $(__color_${color} $rgb))${out:+;${out}}"
 }
 
-
 function __black   {
   echo "$(__color black $@)"
 }
@@ -167,7 +163,6 @@ function __rgb {
   echo "$(__color rgb $@)"
 }
 
-
 function __color_parse {
   next=$1; shift
   echo "$(__$next $@)"
@@ -180,7 +175,6 @@ function color {
 function echo_color {
   echo "$(__color_parse make_echo $@)"
 }
-
 
 black="\[\e[0;30m\]"
 red="\[\e[0;31m\]"
@@ -268,4 +262,3 @@ echo_background_orange="\033[101m"
 
 echo_normal="\033[0m"
 echo_reset_color="\033[39m"
-

@@ -1,34 +1,46 @@
-#!/usr/bin/env bash
-############################---Description---###################################
-#                                                                              #
-# Summary       : A collection of handy utilities and functions for bash       #
-# Support       : destro.nnt@gmail.com                                         #
-# Created date  : Mar 18,2017                                                  #
-# Latest Modified date : Mar 18,2017                                           #
-#                                                                              #
-################################################################################
+#!/data/data/com.termux/files/usr/bin/bash
 
-############################  --- Usage ---  ###################################
-# source ~/path/to/directory/utils.sh
+#-------------  Description  ---------------#
+#                                           #
+# Summary: A collection of handy utilities  #
+# and functions for bash                    #
+# Support: destro.nnt@gmail.com             #
+# C-Date: Mar 18,2017                       #
+# M-Date : Mar 18,2017                      #
+#                                           #
+#-------------------------------------------#
 
-########################## Styled text output ##################################
-# e_header "I am a sample script"
-# e_success "I am a success message"
-# e_error "I am an error message"
-# e_warning "I am a warning message"
-# e_underline "I am underlined text"
-# e_bold "I am bold text"
-# e_note "I am a note"
+#----------------  Usage   -----------------#
+#                                           #
+# source ~/path/to/directory/utils.sh       #
+#                                           #
+#-------------------------------------------#
 
-################# Performing simple Yes/No confirmations #######################
-# seek_confirmation "Do you want to print a success message?"
-# if is_confirmed; then
-#   e_success "Here is a success message"
-# else
-#   e_error "You did not ask for a success message"
-# fi
 
-############ Testing if packages, apps, gems, etc. are installed ###############
+#-----------  Styled Text Output -----------#
+#                                           #
+#    e_hder "I am a sample script"          #
+#    e_scs "I am a success message"         #
+#    e_err "I am an error message"          #
+#    e_wrn "I am a warning message"         #
+#    e_uln "I am underlined text"           #
+#    e_bld "I am bold text"                 #
+#    e_nte "I am a note"                    #
+#                                           #
+#-------------------------------------------#
+
+
+#---------  Yes/No Confirmations  ----------#
+#                                           #
+# ask_confirm "Do you want to print a #
+# success message?" if is_confirmed; then   #
+# e_scs "Here is a success message"     #
+# else e_err "You did not ask for a       #
+# success message" fi                       #
+#                                           #
+#-------------------------------------------#
+
+##### Test if packages, etc. are installed #####
 # if type_exists 'git'; then
 #   e_success "Git good to go"
 # else
@@ -43,10 +55,10 @@
 #   exit 1
 # fi
 
-##################### Sending notifications to Pushover ########################
+##### Sending notifications to Pushover #####
 # pushover "We just finished performing a lengthy task."
 
-############################### Comparing A List ###############################
+############### Comparing A List ###############
 # recipes=(
 #   A-random-package
 #   bash
@@ -60,15 +72,15 @@
 #     echo "$item is not on the list"
 #   done
 # else
-# e_arrow "Nothing to install.  You've already got them all."
+# e_arw "Nothing to install.  You've already got them all."
 # fi
 
-
-################################################################################
+#------------------------------------------
 # Set Colors
 #
-# Use colors, but only if connected to a terminal, and that terminal
-# supports them.
+# Use colors, but only if connected to a
+# terminal, and that terminal supports them.
+#------------------------------------------
 if which tput >/dev/null 2>&1; then
     ncolors=$(tput colors)
 fi
@@ -94,53 +106,57 @@ else
   tan=""
 fi
 
-
-# Headers and Logging
+#---------------------------------
 #
-e_header() { printf "\n${bold}${purple}==========  %s  ==========${reset}\n" "$@"
+#      Headers and Logging
+#
+#---------------------------------
+function e_hdr () { printf "\n${bold}${purple}==========  %s  ==========${reset}\n" "$@"
 }
-e_arrow() { printf "➜ %s\n" "$@"
+function e_arw () { printf "${cyan}[ ➜ ] %s\n" "$@"
 }
-e_success() { printf "${green}✔ %s${reset}\n" "$@"
+function e_scs () { printf "${green}[ ✔ ] %s${reset}\n" "$@"
 }
-e_error() { printf "${red}✖ %s${reset}\n" "$@"
+function e_err () { printf "${red}[ ✖ ] %s${reset}\n" "$@"
 }
-e_warning() { printf "${tan}➜ %s${reset}\n" "$@"
+function e_wrn () { printf "${yellow}[ ➜ ] %s${reset}\n" "$@"
 }
-e_underline() { printf "${underline}${bold}%s${reset}\n" "$@"
+function e_uln () { printf "${underline}${bold}%s${reset}\n" "$@"
 }
-e_bold() { printf "${bold}%s${reset}\n" "$@"
+function e_bld () { printf "${bold}%s${reset}\n" "$@"
 }
-e_note() { printf "${underline}${bold}${blue}Note:${reset}  ${yellow}%s${reset}\n" "$@"
+function e_nte () { printf "${underline}${bold}${blue}Note:${reset}  ${yellow}%s${reset}\n" "$@"
 }
 
-
-# USAGE FOR SEEKING CONFIRMATION
-# seek_confirmation "Ask a question"
+#-------------------------------------------
+#       USAGE FOR ASKING CONFIRMATION
+# ask_confirm "Ask a question"
 # Credit: https://github.com/kevva/dotfiles
 #
-# if is_confirmed; then
+# if is_confirm; then
 #   some action
 # else
 #   some other action
 # fi
-#
-seek_confirmation() {
+#-------------------------------------------
+function ask_confirm () {
   printf "\\n${bold}%s${reset}" "$@"
   read -p " (y/n) " -n 1
   printf "\\n"
 }
 
-
-# Test whether the result of an 'ask' is a confirmation
-is_confirmed() {
+#--------------------------------------
+# Test whether the result of an 'ask'
+# is a confirmation
+#--------------------------------------
+function is_confirm () {
   if [[ "$REPLY" =~ ^[Yy]$ ]]; then
     return 0
   fi
   return 1
 }
 
-
+#---------------------------------
 # Test whether a command exists
 # $1 = cmd to test
 # Usage:
@@ -149,42 +165,19 @@ is_confirmed() {
 # else
 #   some other action
 # fi
-#
-type_exists() {
+#---------------------------------
+function type_exists () {
   [ "$(type -P "$1")" ]
 }
 
-
+#---------------------------------
 # Test which OS the user runs
 # $1 = OS to test
 # Usage: if is_os 'darwin'; then
-#
-is_os() {
+#---------------------------------
+function is_os () {
   if [[ "${OSTYPE}" == $1* ]]; then
     return 0
   fi
   return 1
-}
-
-
-# Pushover Notifications
-# Usage: pushover "Title Goes Here" "Message Goes Here"
-# Credit: http://ryonsherman.blogspot.com/2012/10/shell-script-to-send-pushover.html
-#
-pushover () {
-  PUSHOVERURL="https://api.pushover.net/1/messages.json"
-  API_KEY=$PUSHOVER_API_KEY
-  USER_KEY=$PUSHOVER_USER_KEY
-  DEVICE=$PUSHOVER_DEVICE
-
-  TITLE="${1}"
-  MESSAGE="${2}"
-
-  curl \
-  -F "token=${API_KEY}" \
-  -F "user=${USER_KEY}" \
-  -F "device=${DEVICE}" \
-  -F "title=${TITLE}" \
-  -F "message=${MESSAGE}" \
-  "${PUSHOVERURL}" > /dev/null 2>&1
 }

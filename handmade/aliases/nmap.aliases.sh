@@ -36,6 +36,7 @@ alias nmap.sh="nmap --script-help"
 alias nmap_cmds="bat ~/.local/share/nmap/cmd_cheatsheet.txt"
 alias nmap_open_ports="nmap -vv --open"
 alias nmap_list_interfaces="nmap --iflist"
+alias nmap_arp="nmap -r -sn -PR -vv"
 alias nmap_slow=" nmap -sS -vv -T1"
 alias nmap_fin=" nmap -sF -vv"
 alias nmap_full=" nmap -sS -T4 -PE -PP -PS80,443 -PY -g 53 -A -p1-65535 -vv"
@@ -49,3 +50,9 @@ alias nmap_traceroute=" nmap -sP -PE -PS22,25,80 -PA21,23,80,3389 -PU -PO --trac
 alias nmap_full_with_scripts=" nmap -sS -sU -T4 -A -vv -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,10042 -PO --script all "
 alias nmap_web_safe_osscan=" nmap -p 80,443 -O -vv --osscan-guess --fuzzy "
 alias nmap_ping_scan="nmap -vv -n -sn"
+
+#ssh -R 80:localhost:8080 nokey@localhost.run
+
+## Start the postgresql database before firing
+## up metasploit-frameqork
+alias pg_msf="pg_ctl -D $HOME/.msf4/db -l msfconsole.log start && msfconsole"

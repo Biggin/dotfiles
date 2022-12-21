@@ -1,16 +1,16 @@
-###########################################################
+##############################################
 #
-# Aliases for Android flashing and development work
-# Utilizing the adb & fastboot packages
+# Aliases for Android flashing and development
+# work, utilizing the adb & fastboot packages
 #
-###########################################################
-alias aliases.adb='nano ~/.dotfiles/handmade/aliases/android.aliases.sh'
+##############################################
+alias aliases.adb='nano ${OSH_CUSTOM}/aliases/android.aliases.sh'
 
 alias adb_='adb devices -l'
 alias adbk='adb kill-server'
 alias adb.rt='adb root'
 alias adb.urt='adb unroot'
-alias adb.sh='adb shell -e \ -x'
+alias adb.sh='adb shell'
 alias adb.pu='adb push --sync'
 alias adb.ll='adb pull -a'
 alias adb.syl='adb sync -l'

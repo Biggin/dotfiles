@@ -7,10 +7,10 @@ alias aliases.lsd='nano ${OSH_CUSTOM}/aliases/lsd.aliases.sh'
 #
 #############################################
 alias ls='lsd --color=always --icon=always -F --human-readable'
-alias l='la -1 -SL --reverse --blocks=name,size --total-size'
+alias l='la -1 -SL --blocks=name,size --total-size'
 alias l.='ls -d .*'
 alias la='ls -A'
-alias ll='la -S --long --total-size --reverse --header --blocks=permission,user,size,name'
+alias ll='la -S --long --total-size --header --blocks=permission,user,size,name'
 alias llp='ll --permission=octal'
 alias lt='la -t --long --header --blocks=links,permission,date,user,size,name --reverse'
-alias ltr='ls -d --tree --depth=3 --sort=none'
+alias ltr='ls --tree --depth=3 --sort=none'
