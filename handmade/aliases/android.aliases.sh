@@ -1,9 +1,9 @@
-###########################################################
+####################################################
 #
 # Aliases for Android flashing and development work
 # Utilizing the adb & fastboot packages
 #
-###########################################################
+####################################################
 alias aliases.adb='nano ~/.dotfiles/handmade/aliases/android.aliases.sh'
 
 alias adb_='adb devices -l'
@@ -42,6 +42,6 @@ alias fast.fs='fastboot flash system'
 alias fast.var='fastboot getvar all'
 
 function adb.wifi () {
-	adb kill-server && adb start-server || exit 13
-	adb connect "$1"
+	adb kill-server && adb tcpip 5555 || exit 13
+	adb connect "$1":5555
 }

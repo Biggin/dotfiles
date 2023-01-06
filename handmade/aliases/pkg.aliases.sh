@@ -1,7 +1,6 @@
 ## An alias file for quicker syntax of package
 # manager commands
-alias aliases.pkg="nano \
-    ${OSH_CUSTOM}/aliases/pkg.aliases.sh"
+alias aliases.pkg="nano ${OSH_CUSTOM}/aliases/pkg.aliases.sh"
 
 ###############################################
 #

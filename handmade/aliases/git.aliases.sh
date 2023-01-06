@@ -111,7 +111,7 @@ alias git.push='git push origin $(git_current_branch)'
 alias git.bsup='git branch --set-upstream-to=origin/$(git_current_branch)'
 alias git.psup='git push --set-upstream origin $(git_current_branch)'
 
-alias git.h='git help'
+alias git.h='git help -m'
 alias git.ha='git help -a'
 
 alias git.ll='git pull'
@@ -122,6 +122,7 @@ alias git.llra='git pull --rebase --autostash'
 
 alias git.lg='git log --stat -p'
 #compdef _git git.lg=git-log
+
 alias git.lo='git log --graph --decorate --all'
 alias git.logm='git log --graph --max-count=10'
 alias git.log='git log --oneline --decorate --graph'

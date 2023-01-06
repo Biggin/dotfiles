@@ -1,0 +1,14 @@
+#: mega.nz config file
+[Login]
+    Username = dumb.droid.dev@gmail.com
+    Password = Penguin88
+    
+[Cache]
+    Timeout = 420
+
+[Network]
+   # 1MiB/s
+    SpeedLimit = 2048
+   # Use over TOR
+#    Proxy = socks5://127.0.0.1:9050
+    ParallelTransfers = 4
