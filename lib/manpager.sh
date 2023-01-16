@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/env bash
 
-export PAGER="less -R"
+export PAGER="less -RF"
 
 ## Enable colored man-page output
 export LESS_TERMCAP_mb=$'\e[1;33m'

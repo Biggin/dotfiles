@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#OSH=${HOME}/dotfiles
+#OSH=${HOME}/.dotfiles
 
 # Bail out early if non-interactive
 case $- in
@@ -14,7 +14,7 @@ fi
 
 # Initializes Oh My Bash
 # add a function path
-fpath=($OSH_CUSTOM/functions $fpath)
+fpath=($OSH/functions $fpath)
 
 # Set OSH_CUSTOM to the path where your custom config files
 # and plugins exists, or else we will use the default custom/
@@ -154,9 +154,5 @@ if [[ $PROMPT ]]; then
 fi
 
 if ! type_exists '__git_ps1' ; then
-  source "${OSH_CUSTOM}/tools/git-prompt.sh"
+  source "${OSH}/tools/git-prompt.sh"
 fi
-
-# Adding Support for other OSes
-[ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview" ||
-[ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app" || PREVIEW="less"
