@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 # Simplistic one-liner theme to display source control management info beside
 # the ordinary Linux bash prompt.

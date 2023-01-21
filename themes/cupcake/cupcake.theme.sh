@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 # Emoji-based theme to display source control management and
 # virtual environment info beside the ordinary bash prompt.

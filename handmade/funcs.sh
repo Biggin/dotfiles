@@ -160,10 +160,6 @@ function usage () {
 	fi
 }
 
-function mans () {
-	man "$1" | grep -iC2 --color=always "$2" | less
-}
-
 function mkiso () {
 	if type "mkisofs" > /dev/null; then
 		 if [ -z ${1+x} ]; then
@@ -235,4 +231,3 @@ function add2Path () {
 	# connection and credentials. Return ssh
 	# verification and config options set.
 #}
-

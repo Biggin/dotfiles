@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 # Bash completion support for maven
 # inspired from : 
 #  - https://github.com/juven/maven-bash-completion

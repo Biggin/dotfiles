@@ -4,20 +4,16 @@ grep_flag_available() {
     echo | grep $1 "" >/dev/null 2>&1
 }
 
-GREP_OPTIONS="-RHin --color=auto"
-
-# color grep results
-#if grep_flag_available --color=auto; then
-#    GREP_OPTIONS+=( " --color=auto" )
-#fi
+GREP_OPTIONS="-Ri --color=always"
 
 # ignore VCS folders (if the necessary grep flags are available)
 VCS_FOLDERS="{.bzr,CVS,.git,.hg,.svn}"
+SECRETS="{.secrets,.keys,.creds,.ks,.jks,.token,.ssh,.gnupg}"
 
 if grep_flag_available --exclude-dir=.cvs; then
-    GREP_OPTIONS+=( " --exclude-dir=$VCS_FOLDERS" )
+    GREP_OPTIONS+=( " --exclude-dir=$VCS_FOLDERS --exclude-dir=$SECRETS" )
 elif grep_flag_available --exclude=.cvs; then
-    GREP_OPTIONS+=( " --exclude=$VCS_FOLDERS" )
+    GREP_OPTIONS+=( " --exclude=$VCS_FOLDERS --exclude=$SECRETS" )
 fi
 
 # export grep settings
@@ -27,4 +23,5 @@ alias grev='grep -v'
 # clean up
 unset GREP_OPTIONS
 unset VCS_FOLDERS
+unset SECRETS
 unset -f grep_flag_available

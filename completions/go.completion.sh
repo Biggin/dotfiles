@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 # bash completion for go tool
 # https://github.com/thomasf/go-bash-completion

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 source "$OSH/themes/powerline-naked/powerline-naked.base.sh"
 

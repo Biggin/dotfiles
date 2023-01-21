@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 #OSH=${HOME}/.dotfiles
 
 # Bail out early if non-interactive

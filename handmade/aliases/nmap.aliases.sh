@@ -49,3 +49,9 @@ alias nmap_traceroute=" nmap -sP -PE -PS22,25,80 -PA21,23,80,3389 -PU -PO --trac
 alias nmap_full_with_scripts=" nmap -sS -sU -T4 -A -vv -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,10042 -PO --script all "
 alias nmap_web_safe_osscan=" nmap -p 80,443 -O -vv --osscan-guess --fuzzy "
 alias nmap_ping_scan="nmap -vv -n -sn"
+
+
+# metasploit and postgresql aliases
+alias db_stop='pg_ctl -D $HOME/.msf4/pg_db stop'
+alias db_start='db_stop && pg_ctl -D $HOME/.msf4/pg_db -l $HOME/.msf4/msf.log start'
+alias msf_start='db_start && msfconsole'

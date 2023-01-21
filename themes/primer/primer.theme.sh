@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 # based of the candy theme, but minimized by odbol
 function prompt_command() {

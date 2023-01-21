@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 
 # Two line prompt showing the following information:
 # (time) SCM [username@hostname] pwd (SCM branch SCM status)

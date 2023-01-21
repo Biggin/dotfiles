@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 #
 # Based on 'bobby' theme with the addition of virtualenv_prompt
 #

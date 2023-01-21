@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 # Axin Bash Prompt, inspired by theme "Sexy" and "Bobby"
 # thanks to them

@@ -1,6 +1,6 @@
 # Path to your oh-my-bash installation.
-export OSH=${HOME}/github/dotfiles
-#export PATH=~/.local/bin:${PATH}
+export OSH=${HOME}/.dotfiles
+export PATH=~/bin:${PATH}
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -61,8 +61,9 @@ aliases=(
   android
   bash
   git
-  ls_exa
+  exa
   nmap
+  pkg
 #  repo
 )
 
@@ -74,7 +75,7 @@ plugins=(
   bashmarks
 )
 
-source ${OSH}/oh-my-bash.sh
+source ${OSH}/omy-bash.sh
 
 # User configuration
 # Enable colored man pages
@@ -89,13 +90,15 @@ source ${OSH}/oh-my-bash.sh
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR='nano'
+export EDITOR='nano -W'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
+eval $(ssh-agent -s)
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
+
 
 # Set personal aliases, overriding those provided by oh-my-bash libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-bash
@@ -104,12 +107,4 @@ export EDITOR='nano'
 #
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
-alias omy="nano $OSH/oh-my-bash.sh"
-
-# Variables as shorthand for dirs to cd into
-#export usr="${PREFIX}"
-#export sd="${HOME}/storage/shared"
-#export down="${HOME}/storage/downloads"
-#export hand="${HOME}/.dotfiles/handmade"
-
-eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)
+alias omy="nano $OSH/omy-bash.sh"

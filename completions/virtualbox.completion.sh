@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 _vboxmanage_realopts() {
     echo $(vboxmanage|grep -i vboxmanage|cut -d' ' -f2|grep '\['|tr -s '[\[\|\]\n' ' ')
     echo " "

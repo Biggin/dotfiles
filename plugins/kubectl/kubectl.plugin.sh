@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 # This command is used a LOT both below and in daily life
 alias k=kubectl
 

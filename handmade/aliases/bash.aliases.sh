@@ -1,5 +1,4 @@
 ## An alias file for quicker syntax of common commands
-#alias kali='cd ~ && ./start-kali.sh'
 
 ###############################################
 #
@@ -34,7 +33,8 @@ alias 6='cd -6'
 #         Shell & environment stuff
 #
 ###############################################
-alias xx='exit'
+#alias xx='exit'
+alias xx='kill -9 $$'
 alias cls='clear'
 alias env='env | less'
 alias eng='env | grep'
@@ -42,26 +42,29 @@ alias h='history'
 alias histg='history | grep'
 alias shit='inxi -FmMPxx -c 24'
 alias rc="nano $HOME/.bashrc"
-alias bin='ls ~/.local/bin'
-alias cbin='cd ~/.local/bin'
+alias bin='ls ~/bin'
+alias cbin='cd ~/bin'
 alias colors="bash ${OSH_CUSTOM}/tools/print_colors.sh"
 alias funcs="nano $OSH_CUSTOM/funcs.sh"
 alias aliases="nano $OSH_CUSTOM/aliases/bash.aliases.sh"
 alias src="source ~/.bashrc"
 alias path='echo -e ${PATH//:/\\n}'
+alias what='type -a'
 
 ###############################################
 #
 #  File manipulation things and safety nets
 #
 ###############################################
-alias cp='cp -ir'
-alias ln='ln -i'
-alias mv='mv -i'
+alias cp='cp -irv'
+alias ln='ln -iv'
+alias mv='mv -iv'
 alias mkd='mkdir -pv'
 alias nano='nano -W'
 alias nash='nano -Y sh'
-alias modx='chmod +x'
+alias moda='chmod a+x'
+alias modu='chmod u+x'
+alias 000='chmod 000'
 alias 600='chmod 600'
 alias 644='chmod 644'
 alias 700='chmod 700'
@@ -70,8 +73,6 @@ alias 777='chmod 777'
 alias own="chown -R `whoami`:`whoami`"
 alias diff='diff --color=always --suppress-common-lines'
 alias diffy='diff -yw'
-alias grep='grep -RHin'
-alias grev='grep -v'
 alias r='fc -s'
 alias hd='hexdump'
 alias hdc='hexdump -C'
@@ -79,12 +80,12 @@ alias c='bat'
 alias cb='bat -l bash'
 alias blist='bat --list-themes'
 alias blang='bat --list-languages'
-alias bconfig='nash ~/.config/bat/config'
+alias bcfg='nash ~/.config/bat/config'
 alias nums='cat -ns'
 alias back="tac -r -s 'x\|[^x]' "
 alias untar='tar -xvf'
 alias file='file -s -z'
-alias fhere='find . -name '
+alias ccache='ccache --config-path=$HOME/.config/ccache/ccache.conf'
 alias resync='rsync -ihavEz --links --update --stats --progress'
 
 ## File removal "securely" for the noid...

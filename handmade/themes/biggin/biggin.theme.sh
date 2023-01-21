@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 function prompt_command() {
     if [ ${EUID} == 0 ]; then

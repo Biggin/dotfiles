@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 __tonka_time() {
   THEME_CLOCK_FORMAT="%H%M"

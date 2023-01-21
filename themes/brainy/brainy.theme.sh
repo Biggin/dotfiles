@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 # Brainy Bash Prompt for Bash-it
 # by MunifTanjim

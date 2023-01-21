@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 SCM_THEME_PROMPT_DIRTY=" ${bold_red}⊘${normal}"
 SCM_THEME_PROMPT_CLEAN=" ${bold_green}✓${normal}"

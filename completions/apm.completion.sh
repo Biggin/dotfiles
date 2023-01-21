@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 # apm-bash-completion is written by Ugur Ozyilmazel
 # repo: https://github.com/vigo/apm-bash-completion
