@@ -1,14 +1,4 @@
-<<<<<<< HEAD
 #!/data/data/com.termux/files/usr/bin/env bash
-#OSH=${HOME}/.dotfiles
-||||||| parent of df8141a (Fixed termux shebang in all files)
-#!/usr/bin/env bash
-#OSH=${HOME}/dotfiles
-=======
-#!/usr/bin/env bash
-#OSH=${HOME}/.dotfiles
->>>>>>> df8141a (Fixed termux shebang in all files)
-
 # Bail out early if non-interactive
 case $- in
   *i*) ;;
@@ -162,5 +152,5 @@ if [[ $PROMPT ]]; then
 fi
 
 if ! type_exists '__git_ps1' ; then
-  source "${OSH}/tools/git-prompt.sh"
+  source "$OSH/tools/git-prompt.sh"
 fi

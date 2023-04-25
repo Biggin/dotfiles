@@ -84,8 +84,10 @@ alias ccache='ccache --config-path=$HOME/.config/ccache/ccache.conf'
 #alias resync='rsync -ihavEz --links --update --stats --progress'
 alias fhere='find . -name '
 alias forkat='fortune | lolcat'
-alias sync='rsync -arvulimhPgot --mkpath --stats'
-alias resync='$(which rsync) -imhavv --mkpath --safe-links -KuPUNtAXE --stats --partial-dir="~/.rsync/partial" --temp-dir="~/.rsync/tmp"'
+alias rsync='rsync -rv --progress --mkpath --inplace'
+alias sync='rsync -aulimhPgot'
+alias cpv='rsync -au'
+alias resync='rsync -imhav --safe-links -KuPUNtAXE --partial-dir="~/.local/rsync/partial" --temp-dir="~/.lical/rsync/tmp"'
 
 
 #------------------------------------------
@@ -125,6 +127,16 @@ alias gtar.ls='gtar -t'
 #------------  OPENSSL  ------------
 alias ssl='openssl'
 
+#----------------  SSH Stuffs  ------------------
+alias genkeys='ssh-keygen -t ed25519 -C'
+alias add-tux='eval $(ssh-agent -s) && ssh-add ~/.ssh/tux_id_rsa'
+alias add-big='eval $(ssh-agent -s) && ssh-add ~/.ssh/biggin_gh_ed25519'
+alias add-cl='eval $(ssh-agent -s) && ssh-add ~/.ssh/clnelson_gh_ed25519'
+alias deagent='pgrep ssh-agent | xargs kill'
+alias ssh-gpg='gpg-connect-agent /bye'
+alias ssh-update='gpg-connect-agent updatestartuptty /bye'
+alias ssh.T="ssh -T git@github.com"
+
 
 #------------------------------------------
 #   System resource stuff pertaining to
@@ -155,58 +167,6 @@ alias ports='netstat -tulanp'
 alias chains='proxychains4'
 alias rfkill='rfkill --output DEVICE,ID,TYPE,TYPE-DESC,SOFT,HARD'
 
-#----------------  SSH Stuffs  ------------------
-alias genkeys='ssh-keygen -t ed25519 -C'
-alias add-tux='eval $(ssh-agent -s) && ssh-add ~/.ssh/tux_id_rsa'
-alias add-big='eval $(ssh-agent -s) && ssh-add ~/.ssh/biggin_gh_ed25519'
-alias add-cl='eval $(ssh-agent -s) && ssh-add ~/.ssh/clnelson_gh_ed25519'
-alias deagent='pgrep ssh-agent | xargs kill'
-alias ssh-gpg='gpg-connect-agent /bye'
-alias ssh-update='gpg-connect-agent updatestartuptty /bye'
-alias ssh.T="ssh -T git@github.com"
-
-
-#----------------------------------------
-#     Aliases for package management
-#----------------------------------------
-alias ag='apt-get'
-alias ai='apt-get install'
-alias afb='apt --fix-broken install'
-alias ap='apt-get purge'
-alias al='apt list'
-alias ali='al --installed'
-alias alig='ali | grep'
-alias as='apt search'
-alias asw='apt show'
-alias au='apt-get update'
-alias auu='au && apt-get upgrade'
-alias clapt='apt autoremove && apt remove && apt autoclean && apt clean'
-
-#-------------------------------------
-#: Termux specific package commands
-#-------------------------------------
-alias pk.fl='pkg files'
-alias pk.la='pkg list-all'
-alias pk.li='pkg list-installed'
-alias pk.ug='pkg upgrade'
-alias pk.sw='pkg show'
-alias pk.sr='pkg search'
-
-#------------------------
-#: Dpkg simplification
-#------------------------
-alias dp='dpkg'
-alias dp.h='dpkg --help'
-alias dp.fh='dpkg --force-help'
-alias dp.i='dpkg -i'
-alias dp.lp='dpkg -l'
-alias dp.lg='dp.lp | grep'
-alias dp.lf='dpkg -L'
-alias dp.s='dpkg -S'
-alias dp.con='dpkg --configure -a'
-## Sort by amount of disk space currently used by the program
-alias dp.ss="dpkg-query -W --showformat='${Installed-Size} ${Package}\n' | sort -nr | less"
-
 
 #-------------------------------------------
 #    Mega.nz aliases for multiple accounts
@@ -236,3 +196,11 @@ alias megacopy.k="megacopy --config=${Secrets}/kyle.megarc"
 alias megaget.k="megaget --config=${Secrets}/kyle.megarc --path"
 alias megaput.k="megaput --config=${Secrets}/kyle.megarc --enable-previews --path"
 alias megareg.k="megareg -n \"Kyle Johnson\" -e \"kjanonkj@gmail.com\" --register --password=Penguin88 --config=${Creds}/kyle.megarc"
+
+
+#----------------------------------------
+#           Hacking Things
+#----------------------------------------
+alias db_stop='pg_ctl -D $HOME/.msf4/db stop'
+alias db_start='pg_ctl -D $HOME/.msf4/db stop && pg_ctl -D $HOME/.msf4/db -l $HOME/.msf4/msf-$(date +%D-%_l:%M%p).log start'
+alias msf_start='db_start && msfconsole'
