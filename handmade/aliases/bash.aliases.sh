@@ -38,6 +38,7 @@ alias h='history'
 alias hg='history | grep'
 alias shit='inxi -FmMPxx -c 24'
 alias rc="nano $HOME/.bashrc"
+alias omy="nano $OSH/omy-bash.sh"
 alias bin='ls ~/bin'
 alias cbin='cd ~/bin'
 alias obin='cd ~/../usr/opt/bin'

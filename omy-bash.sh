@@ -1,4 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/env bash
+
 # Bail out early if non-interactive
 case $- in
   *i*) ;;
@@ -124,8 +125,8 @@ done
 unset config_file
 
 # Load colors first so they can be use in base theme
-source "${OSH_CUSTOM}/themes/colours.theme.sh"
-source "${OSH_CUSTOM}/themes/base.theme.sh"
+source "$OSH_CUSTOM/themes/colours.theme.sh"
+source "$OSH_CUSTOM/themes/base.theme.sh"
 
 # Load the theme
 if [ "$OSH_THEME" = "random" ]; then
