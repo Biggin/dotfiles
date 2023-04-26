@@ -7,13 +7,13 @@ alias aliases.exa='nano ${OSH_CUSTOM}/aliases/exa.aliases.sh'
 #
 #############################################
 if [ -x $PREFIX/bin/exa > /dev/null ]; then
-    alias ls='exa -F --color=always --color-scale --git --icons'
+    alias ls='exa -F --color=always --color-scale  --icons'
     alias sl='ls'
     alias ks='ls'
     alias kd='ls'
     alias la='ls --all'
     alias l.='ls -d .*'
-    alias l='la --long -bhr -1 --sort=size --no-users --no-time --no-permissions'
+    alias l='la --long -bhr --sort=size --no-user --no-time --no-permissions --git --git-ignore'
     alias ll='la --sort=Name --long -bhx -@ --no-user'
     alias lr='la -R --sort=name'
     alias lm='ls --long -mbh@1 --sort=date'

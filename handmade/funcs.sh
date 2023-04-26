@@ -140,9 +140,17 @@ function cd () {
 #-------------------------------------------
 #: Make a new directory and change into it
 #-------------------------------------------
-function go () {
-	if [ -d $1 ]; then
-		echo -e ${Yel}"The directory $1 already exists"${Res}
+function cdd () {
+	if [[ $# != 1 ]]; then
+		echo -e "\e[1;97m[\e[31m Error\e[0m\e[37m:\e[1;97m]\e[0m \e[33mNo \e[1;37m<\e[33mdirectory\e[37m>\e[0m\e[33m supplied to create.....guessing you want to go to \e[37m'\e[32mHOME\e[37m'\e[33m?\e[0m" 2>&1
+		sleep 1.5
+		cd $HOME
+
+		return 13
+	fi
+
+	if [[ -d $1 ]]; then
+		echo -e ${Yel}"The directory $1 already exists!"${Res}
 		sleep 1
 		cd $1 || return 13
 	else
