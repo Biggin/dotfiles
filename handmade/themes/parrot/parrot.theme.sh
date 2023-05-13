@@ -1,19 +1,11 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 
-#function prompt_command() {
- #   if [ ${EUID} == 0 ]; then
-  #      PS1="${yellow}r00t${red}@${cyan}linux-box${reset_color} ${green}\w${reset_color}$(scm_prompt_info)${white} → ${reset_color}";
- #   else
-  #      PS1="${red}h4ck3r${yellow}@${cyan}linux-box${reset_color} ${green}\w${reset_color}$(scm_prompt_info)${white} → ${reset_color}";
-  #  fi
-#}
-
-## ParrotOS User Prompt
+#: ParrotOS User Prompt
 function prompt_command () {
-	if [[ ${EUID} == 0 ]]; then
-		PS1="\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo -e \"[\342\234\227]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo -e 'root@\h'; else echo -e '\u@\h'; fi)]\342\224\200[\w]\n\342\224\224\342\224\200\342\224\200\342\225\274\\$ "
+	if [ ${EUID} == 0 ]; then
+		PS1="${echo_bold_green}\342\224\214\342\224\200\$([ \$? != 0 ] && echo -e \"${echo_bold_blue}[${echo_bold_green}\342\234\227${echo_bold_blue}]${echo_bold_green}\342\224\200\")${echo_bold_blue}[$(if [ ${EUID} == 0 ]; then echo -e ${echo_green}r${echo_purple}00${echo_green}t${echo_bold_yellow}@${echo_white}'\h'; else echo -e ${echo_cyan}\u${echo_bold_yellow}@${echo_purple}'\h'; fi)${echo_bold_blue}]${echo_bold_green}\342\224\200${echo_bold_blue}[${echo_purple}\w${echo_bold_blue}]${echo_bold_green}\n\342\224\224\342\224\200\342\224\200\342\225\274$(scm_prompt_info) ${echo_white}\\$ ${echo_normal}"
 	else
-		 PS1="\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo -e \"[\342\234\227]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo -e '\u@\h'; fi)]\342\224\200[\w]\n\342\224\224\342\224\200\342\224\200\342\225\274\\$ "
+		 PS1="${echo_red}\342\224\214\342\224\200\$([ \$? != 0 ] && echo -e \"${echo_bold_white}[${echo_red}\342\234\227${echo_bold_white}]${echo_red}\342\224\200\")${echo_bold_white}[$(if [ ${EUID} == 0 ]; then echo -e ${echo_cyan}r${echo_purple}00${echo_cyan}t${echo_orange}@${echo_yellow}'\h'; else echo -e ${echo_cyan}\u${echo_bold_yellow}@${echo_purple}'\h'; fi)${echo_bold_white}]${echo_red}\342\224\200${echo_bold_white}[${echo_bold_blue}\w${echo_bold_white}]\n${echo_red}\342\224\224\342\224\200\342\224\200\342\225\274$(scm_prompt_info) ${echo_bold_yellow}\\$ ${echo_normal}"
 	fi
 }
 

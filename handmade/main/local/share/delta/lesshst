@@ -1,0 +1,4 @@
+.less-history-file:
+.search
+"pager
+"^(commit|added:|removed:|renamed:|Δ|•)

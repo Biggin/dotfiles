@@ -1,5 +1,5 @@
 ## Aliases for using lsd as a stand-in for ls
-alias aliases.lsd='nano ${OSH_CUSTOM}/aliases/lsd.aliases.sh'
+alias aliases.lsd='nano $OSH_CUSTOM/aliases/lsd.aliases.sh'
 
 #############################################
 #

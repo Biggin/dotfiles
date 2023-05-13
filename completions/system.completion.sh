@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Loads the system's Bash completion modules.
 # If Homebrew is installed (OS X), its Bash completion modules are loaded.

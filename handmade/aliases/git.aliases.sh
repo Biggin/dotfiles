@@ -1,14 +1,13 @@
 ## Git aliases borrowed from the oh-my-bash git plugin and
 ## modified for my use on various systems
 
-alias aliases.git='nano $OSH_CUSTOM/aliases/git.aliases.sh'
+alias aliases.git="nano $OSH_CUSTOM/aliases/git.aliases.sh"
 
-alias gcfg="nano ${HOME}/.gitconfig"
 
 ###############
-#	      #
+#    	      #
 #  FUNCTIONS  #
-#	      #
+#	          #
 ###############
 # The name of the current branch
 # Backward-compatibility wrapper for when
@@ -29,21 +28,28 @@ function current_repository() {
 }
 
 # Pretty log messages
-function _git_log_prettily(){
+function _git_log_prettily() {
   if ! [ -z $1 ]; then
     git log --pretty=$1
   fi
 }
 
+# cd to the ROOT of the worktree
+function cg () {
+	cd $(git rev-parse --show-toplevel)
+}
+
 
 #############
-#	    #
+#   	    #
 #  Aliases  #
 #           #
 #############
 # Sorted Alphabetically
-# exa cmd to list files with git status shown in long format
-alias lg='exa --long --git --header -Hb --no-user -@'
+alias gcfg="nano $HOME/.gitconfig"
+
+# exa cmd to list files with git statuses in long format
+alias lg='exa --long --gitignore --git -Hhrbms --no-user -@ --color-scale'
 
 alias gadd='git add -A'
 
@@ -59,17 +65,14 @@ alias git.bss='git bisect start'
 
 alias git.c='git commit -m'
 # Scope of config options
+alias git.cfl='git config --list'
+#compdef _git git.cfl=git-config
 alias git.glb='git config --global'
 #compdef _git git.glb=git-config
 alias git.sys='git config --system'
 #compdef _git git.sys=git-config
 alias git.lcl='git config --local'
 #compdef _git git.lcl=git-config
-
-# Query config options
-alias git.cfl='git config --list'
-alias git.cfm='git config --get'
-alias git.cfu='git config --unset'
 
 alias git.cln='git clean -f -d'
 alias git.recln='git reset --hard && git clean -dfx'
@@ -99,10 +102,10 @@ alias git.dw='git diff --word-diff'
 #compdef _git git.dw=git-diff
 
 alias git.f='git fetch'
-alias git.fo='git fetch origin'
-alias git.fa='git fetch --all --prune'
 #compdef _git git.f=git-fetch
+alias git.fo='git fetch origin'
 #compdef _git git.fo=git-fetch
+alias git.fa='git fetch --all --prune'
 #compdef _git git.fa=git-fetch
 
 alias git.push='git push origin $(git_current_branch)'
@@ -112,20 +115,25 @@ alias git.bsup='git branch --set-upstream-to=origin/$(git_current_branch)'
 alias git.psup='git push --set-upstream origin $(git_current_branch)'
 
 alias git.h='git help -m'
+#compdef _git git.h=git-help
 alias git.ha='git help -a'
+#compdef _git git.ha=git-help
 
 alias git.ll='git pull'
 #compdef _git git.ll=git-pull
 alias git.llr='git pull --rebase'
 #compdef _git git.llr=git-pull
 alias git.llra='git pull --rebase --autostash'
+#compdef _git git.llra=git-pull
 
 alias git.lg='git log --stat -p'
 #compdef _git git.lg=git-log
-
 alias git.lo='git log --graph --decorate --all'
+#compdef _git git.lo=git-log
 alias git.logm='git log --graph --max-count=10'
+#compdef _git git.logm=git-log
 alias git.log='git log --oneline --decorate --graph'
+#compdef _git git.log=git-log
 alias git.lp="_git_log_prettily"
 #compdef _git git.lp=git-log
 alias git.shw='git show --pretty=short --show-signature'

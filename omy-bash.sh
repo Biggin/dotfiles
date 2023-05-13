@@ -1,4 +1,5 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
+
 # Bail out early if non-interactive
 case $- in
   *i*) ;;

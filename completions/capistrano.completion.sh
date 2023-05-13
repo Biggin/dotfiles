@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 # Bash completion support for Capistrano.
 
 export COMP_WORDBREAKS=${COMP_WORDBREAKS/\:/}

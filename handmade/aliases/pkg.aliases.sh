@@ -1,59 +1,53 @@
 ## An alias file for quicker syntax of package
 # manager commands
-alias aliases.pkg="nano ${OSH_CUSTOM}/aliases/pkg.aliases.sh"
+alias aliases.pkg="nano $OSH_CUSTOM/aliases/pkg.aliases.sh"
 
 ###############################################
 #
 #       Aliases for package management
 #
 ###############################################
-alias ag='apt-get'
-alias ai='apt-get install'
-alias afb='apt --fix-broken install'
-alias ap='apt-get purge'
-alias al='apt list'
-alias ali='al --installed'
-alias alig='ali | grep'
-alias as='apt search'
-alias asw='apt show'
-alias au='apt-get update'
-alias auu='au && apt-get upgrade'
-alias clapt='apt autoremove && apt remove && apt autoclean && apt clean'
-
-## Termux specific package commands
-alias pk.fl='pkg files'
-alias pk.la='pkg list-all'
-alias pk.li='pkg list-installed'
-alias pk.ug='pkg upgrade'
-alias pk.sw='pkg show'
-alias pk.sr='pkg search'
+alias clapt='sudo apt autoremove && sudo apt remove && sudo apt autoclean && sudo apt clean'
+alias afb='sudo apt --fix-broken install'
+alias ag='sudo apt-get'
+alias ai='sudo apt-get install'          # Add a '-' to package names (with no space) to remove packages
+alias al='sudo apt list'
+alias ali='sudo apt list --installed'
+alias alig='sudo apt list --installed | grep'
+alias ap='sudo apt-get purge'
+alias ar='sudo apt-get remove'           # Add a '+' to package names (with no space) to install packages
+alias ari='sudo apt-get reinstall'
+alias as='sudo apt search'
+alias asw='sudo apt show'
+alias au='sudo apt-get update'
+alias auu='sudo apt-get update && sudo apt-get upgrade'
 
 ## Dpkg simplification
-alias dp='dpkg'
-alias dp.h='dpkg --help'
-alias dp.fh='dpkg --force-help'
-alias dp.ah='dpkg --assertion-help'
-alias dp.i='dpkg --install'
-alias dp.u='dpkg --unpack'
-alias dp.a='dpkg --audit'
-alias dp.p='dpkg --purge'
-alias dp.s='dpkg --status'
-alias dp.l='dpkg --list'
-alias dp.lg='dp.lp | grep'
-alias dp.lf='dpkg --listfiles'
-alias dp.ca='dpkg --configure -a'
-alias dp.aa='dpkg --add-architecture'
-alias dp.ra='dpkg --remove-architecture'
-alias dp.pa='dpkg --print-foreign-architectures'
+alias dp='sudo dpkg'
+alias dp.a='sudo dpkg --audit'
+alias dp.aa='sudo dpkg --add-architecture'
+alias dp.ah='sudo dpkg --assertion-help'
+alias dp.ca='sudo dpkg --configure -a'
+alias dp.fh='sudo dpkg --force-help'
+alias dp.h='sudo dpkg --help'
+alias dp.i='sudo dpkg --install'
+alias dp.l='sudo dpkg --list'
+alias dp.lf='sudo dpkg --listfiles'
+alias dp.lg='sudo dpkg --list | grep'
+alias dp.p='sudo dpkg --purge'
+alias dp.pa='sudo dpkg --print-foreign-architectures'
+alias dp.ra='sudo dpkg --remove-architecture'
+alias dp.s='sudo dpkg --status'
+alias dp.u='sudo dpkg --unpack'
 #: Sort by amount of disk space currently used by the program
-alias dp.ss="dpkg-query -W --showformat='${Installed-Size} ${Package}\n' | sort -nr | less"
+alias dp.ss="sudo dpkg-query -W --showformat='${Installed-Size} ${Package}\n' | sort -nr | less"
 
-## Shortening of dpkg-deb commands
-alias dpd='dpkg-deb'
-alias dpd.h='dpkg-deb --help'
-alias dpd.b='dpkg-deb --build'
-alias dpd.i='dpkg-deb --info'
-alias dpd.l='dpkg-deb --contents'
-alias dpd.x='dpkg-deb --vextract'
-alias dpd.r='dpkg-deb --raw-extract'
-alias dpd.c='dpkg-deb --control'
+## Shortening of sudo dpkg-deb commands
+alias dpd='sudo dpkg-deb'
+alias dpd.b='sudo dpkg-deb --build'
+alias dpd.c='sudo dpkg-deb --control'
+alias dpd.h='sudo dpkg-deb --help'
+alias dpd.i='sudo dpkg-deb --info'
+alias dpd.l='sudo dpkg-deb --contents'
+alias dpd.r='sudo dpkg-deb --raw-extract'
+alias dpd.x='sudo dpkg-deb --vextract'

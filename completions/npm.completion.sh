@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 
 # npm (Node Package Manager) completion
 # https://docs.npmjs.com/cli/completion

@@ -1,0 +1,50 @@
+#!/data/data/com.termux/files/usr/bin/env bash
+cd $(dirname "$0")
+set -eu
+
+# Show help message
+function help () {
+    echo "Usage: gsource FILE [LINE NUMBER]"
+    echo "Link to the online git file, with optional line number"
+    echo "  -h, --help       display this help and exit"
+}
+
+# getopt short options go together, long options have commas
+TEMP=`getopt -o hd:f --long help,dir,force -n 'test.sh' -- "$@"`
+
+if [ $? != 0 ] ; then
+    echo "Something wrong with getopt" >&2
+    exit 1
+fi
+
+eval set -- "$TEMP"
+dir=""
+
+while true ; do
+    case "$1" in
+        -h|--help) help; exit 0; shift ;;
+        -d|--dir) dir=$2 ; shift 2 ;;
+        -f|--force) force=true ; shift ;;
+        --) shift ; break ;;
+        *) echo "Internal error, unexpected argument '$0'!" ; exit 1 ;;
+    esac
+done
+
+if [ "$force" = true ]; then
+  echo "force was true or whatever"
+fi
+
+
+# basic Y/N prompt
+read -r -p "some yes/no question [Y/n] " response
+
+case "$response" in
+  [nN][oO]|[nN])
+    echo "Alright setup your own key"
+    ;;
+  [yY][eE][sS]|[yY])
+    echo "Alright good luck"
+    ;;
+esac
+
+read -n 1 -s -r -p "Press any key to continue"

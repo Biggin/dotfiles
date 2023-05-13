@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 
 __delta_previous_extglob_setting=$(shopt -p extglob)
 shopt -s extglob

@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 ############################---Description---###################################
 #                                                                              #
 # Summary       : Show a progress bar GUI on terminal platform                 #

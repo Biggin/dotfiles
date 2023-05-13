@@ -5,14 +5,14 @@
 #############
 
 ###############################################
-alias aliases.repo='nano ${OSH_CUSTOM}/aliases/repo.aliases.sh'
-y
+alias aliases.repo='nano $OSH_CUSTOM/aliases/repo.aliases.sh'
+
+alias rehelp='repo help --all'
 alias rstat='repo status'
 alias reman='repo manifest'
 alias rebra='repo branches'
 alias rechk='repo checkout'
 alias reup='repo selfupdate'
-alias repoh='repo help --all'
 alias rerepo='repo rebase -i'
 alias rediff='repo diffmanifests'
 alias rebaser='repo rebase --autosquash --auto-stash -m'

@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 
 CLOCK_CHAR_THEME_PROMPT_PREFIX=''
 CLOCK_CHAR_THEME_PROMPT_SUFFIX=''
@@ -9,10 +9,10 @@ THEME_PROMPT_HOST='\H'
 
 SCM_CHECK=${SCM_CHECK:=true}
 
-SCM_THEME_PROMPT_DIRTY=${bold_red}' ✗'${reset_color}
-SCM_THEME_PROMPT_CLEAN=${bold_black}' ✓'${reset_color}
-SCM_THEME_PROMPT_PREFIX=${bold_green}' ['${reset_color}
-SCM_THEME_PROMPT_SUFFIX=${bold_green}']'${reset_color}
+SCM_THEME_PROMPT_DIRTY=${echo_bold_red}' ✗'${echo_reset_color}
+SCM_THEME_PROMPT_CLEAN=${echo_green}' ✓'${echo_reset_color}
+SCM_THEME_PROMPT_PREFIX=${echo_bold_white}' ['${echo_reset_color}
+SCM_THEME_PROMPT_SUFFIX=${echo_bold_white}']'${echo_red}' →'${echo_reset_color}
 SCM_THEME_BRANCH_PREFIX=''
 SCM_THEME_TAG_PREFIX='tag:'
 SCM_THEME_DETACHED_PREFIX='detached:'
@@ -34,11 +34,11 @@ SCM_GIT_SHOW_MINIMAL_INFO=${SCM_GIT_SHOW_MINIMAL_INFO:=false}
 SCM_GIT='git'
 SCM_GIT_CHAR='±'
 SCM_GIT_DETACHED_CHAR='⌿'
-SCM_GIT_AHEAD_CHAR=${cyan}"↑"${reset_color}
-SCM_GIT_BEHIND_CHAR=${cyan}"↓"${reset_color}
-SCM_GIT_UNTRACKED_CHAR=${bold_yellow}"?:"${reset_color}
-SCM_GIT_UNSTAGED_CHAR=${bold_purple}"U:"${reset_color}
-SCM_GIT_STAGED_CHAR=${green}"S:"${reset_color}
+SCM_GIT_AHEAD_CHAR=${echo_bold_cyan}"↑"${echo_reset_color}
+SCM_GIT_BEHIND_CHAR=${echo_bold_cyan}"↓"${echo_reset_color}
+SCM_GIT_UNTRACKED_CHAR=${echo_bold_yellow}"?:"${echo_reset_color}
+SCM_GIT_UNSTAGED_CHAR=${echo_bold_purple}"U:"${echo_reset_color}
+SCM_GIT_STAGED_CHAR=${echo_bold_green}"S:"${echo_reset_color}
 
 SCM_HG='hg'
 SCM_HG_CHAR='☿'
@@ -132,7 +132,7 @@ function scm_prompt_info_common {
 function git_clean_branch {
   local unsafe_ref=$(command git symbolic-ref -q HEAD 2> /dev/null)
   local stripped_ref=${unsafe_ref##refs/heads/}
-  local clean_ref=${stripped_ref//[^a-zA-Z0-9\/]/-}
+  local clean_ref=${stripped_ref//[[^a-zA-Z0-9\/]]/-}
   echo $clean_ref
 }
 
@@ -303,8 +303,8 @@ function svn_prompt_vars {
 function get_hg_root {
     local CURRENT_DIR=$(pwd)
 
-    while [ "$CURRENT_DIR" != "/" ]; do
-        if [ -d "$CURRENT_DIR/.hg" ]; then
+    while [[ "$CURRENT_DIR" != "/" ]]; do
+        if [[ -d "$CURRENT_DIR/.hg" ]]; then
             echo "$CURRENT_DIR/.hg"
             return
         fi
@@ -326,14 +326,14 @@ function hg_prompt_vars {
 
     HG_ROOT=$(get_hg_root)
 
-    if [ -f "$HG_ROOT/branch" ]; then
+    if [[ -f "$HG_ROOT/branch" ]]; then
         # Mercurial holds it's current branch in .hg/branch file
         SCM_BRANCH=$(cat "$HG_ROOT/branch")
     else
         SCM_BRANCH=$(hg summary 2> /dev/null | grep branch: | awk '{print $2}')
     fi
 
-    if [ -f "$HG_ROOT/dirstate" ]; then
+    if [[ -f "$HG_ROOT/dirstate" ]]; then
         # Mercurial holds various information about the working directory in .hg/dirstate file. More on http://mercurial.selenic.com/wiki/DirState
         SCM_CHANGE=$(hexdump -n 10 -e '1/1 "%02x"' "$HG_ROOT/dirstate" | cut -c-12)
     else
@@ -344,7 +344,7 @@ function hg_prompt_vars {
 function rvm_version_prompt {
   if which rvm &> /dev/null; then
     rvm=$(rvm-prompt) || return
-    if [ -n "$rvm" ]; then
+    if [[ -n "$rvm" ]]; then
       echo -e "$RVM_THEME_PROMPT_PREFIX$rvm$RVM_THEME_PROMPT_SUFFIX"
     fi
   fi
@@ -354,7 +354,7 @@ function rbenv_version_prompt {
   if which rbenv &> /dev/null; then
     rbenv=$(rbenv version-name) || return
     $(rbenv commands | grep -q gemset) && gemset=$(rbenv gemset active 2> /dev/null) && rbenv="$rbenv@${gemset%% *}"
-    if [ $rbenv != "system" ]; then
+    if [[ $rbenv != "system" ]]; then
       echo -e "$RBENV_THEME_PROMPT_PREFIX$rbenv$RBENV_THEME_PROMPT_SUFFIX"
     fi
   fi
@@ -428,7 +428,7 @@ function clock_char {
 function clock_prompt {
   CLOCK_COLOR=${THEME_CLOCK_COLOR:-"$normal"}
   CLOCK_FORMAT=${THEME_CLOCK_FORMAT:-"%H:%M:%S"}
-  [ -z $THEME_SHOW_CLOCK ] && THEME_SHOW_CLOCK=${THEME_CLOCK_CHECK:-"true"}
+  [[ -z $THEME_SHOW_CLOCK ]] && THEME_SHOW_CLOCK=${THEME_CLOCK_CHECK:-"true"}
   SHOW_CLOCK=$THEME_SHOW_CLOCK
 
   if [[ "${SHOW_CLOCK}" = "true" ]]; then
@@ -446,7 +446,7 @@ function user_host_prompt {
 # backwards-compatibility
 function git_prompt_info {
   git_prompt_vars
-  echo -e "${SCM_PREFIX}${bold_cyan}${SCM_BRANCH}${reset_color}${SCM_STATE}${SCM_SUFFIX}"
+  echo -e "${SCM_PREFIX}${echo_bold_cyan}${SCM_BRANCH}${echo_reset_color}${SCM_STATE}${SCM_SUFFIX}"
 }
 
 function svn_prompt_info {
@@ -470,7 +470,7 @@ function prompt_char {
 
 function battery_char {
     if [[ "${THEME_BATTERY_PERCENTAGE_CHECK}" = true ]]; then
-        echo -e "${bold_red}$(battery_percentage)%"
+        echo -e "${echo_bold_red}$(battery_percentage)%"
     fi
 }
 
@@ -511,7 +511,7 @@ function safe_append_prompt_command {
     # Set OS dependent exact match regular expression
     if [[ ${OSTYPE} == darwin* ]]; then
       # macOS
-      prompt_re="[[:<:]]${1}[[:>:]]"
+      prompt_re="[:<:]${1}[:>:]"
     else
       # Linux, FreeBSD, etc.
       prompt_re="\<${1}\>"

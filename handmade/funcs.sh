@@ -1,164 +1,130 @@
-#-------------------------------------------
-#:               -- TODO --
-#-------------------------------------------
-#: Organize this file by function type and
-#: what they affect or operate on
-#-------------------------------------------
+# Function library to extend usability and readability
+# providing warning, error, success, info messages.
+# Along with headers, confirmation dialogs, is_os parser
+# and more helpful functions to make life easier....
+source "$OSH_CUSTOM/helpers/replies"
 
+# My custom color lib for 256 color terminals to pretty
+# things up just a bit. Falls back to default 16 color
+# Linux terminal if tput isn't available or if the system
+# don't support 256 colors.
+source "$OSH_CUSTOM/helpers/256colors"
 
-#############################################
-#:
-#:              System Info
-#:
-#############################################
+# Script to allow showing an animated progress bar for
+# drawn-out tasks in the terminal...
+source "$OSH_CUSTOM/helpers/progress"
 
-#-------------------------------------------
-#: Function to display uptime of a system.
-#: All credits to the original author.
-#-------------------------------------------
-function upinfo () {
+# Function to display uptime of a system.
+# All credits to the original author.
+function upinfo() {
     echo -ne "${Blu}${HOSTNAME} ${Mag}uptime is ${Yel} \\t "
     uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10,$11}'
 }
 
-#-------------------------------
-#: List 10 most used commands
-#-------------------------------
 function bash_stats() {
 	 fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n20
 }
 
-#-------------------------------
-#: Display disk usage for arg
-#-------------------------------
-function usage () {
-	if [ "$(uname)" = "Linux" ]; then
-   	    if [ -n "$1" ]; then
-    	  	du -h --max-depth=1 "$1"
-	    else
-	        du -h --max-depth=1
-	    fi
-	fi
-}
-
-#---------
-#: TODO
-#---------
-function private_ip () {
-#    if ifconfig 2>&1 > /dev/null; then
-        ifconfig 2> /dev/null | grep 'inet' | cut -d '.' -f 1-4 | awk '{ print $2 }' | tail -1
-#    else
-#        return 13
-}
-
-#---------
-#: TODO
-#---------
-function public_ip () {
-#    local IP=$(curl -s http://whatismyip.akamai.com)
-#    printf "%s\n" "$IP"
-
-    local IP=$(curl -s http://ipinfo.io/ip)
-    echo -ne "$IP \n"
-}
-
-#############################################
-#:
-#:            File Manipulation
-#:
-#############################################
-
-
-#-------------------------------------------
-#:
-#: Extract any compRessed file type with one
-#: universal command works with....
-#: tar|tar.bz2|tar.gz|tar.xz|tbz2|tgz|txz
-#: lzma|rar|gz|bz2|zip|Z|7z|arj|cab|chm|deb
-#: dmg|iso|exe|lzh|rpm|msi|udf|wim|xar
-#:
-#-------------------------------------------
-function extract () {
- if [ -z "$1" ]; then
-      # display usage if no parameters given
-      echo -e ${Yel}"Usage: extract      <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
-      echo -e ${Yel}"       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"${Res}
-	return 1
- else
-      for n in $@
-      do
-        if [ -f "$n" ] ; then
-             case "${n%,}" in
-               *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                            tar xvf "$n"       ;;
-               *.lzma)      unlzma ./"$n"      ;;
-               *.bz2)       bunzip2 ./"$n"     ;;
-               *.rar)       unrar x -ad ./"$n" ;;
-               *.gz)        gunzip ./"$n"      ;;
-               *.zip)       unzip ./"$n"       ;;
-               *.z)         uncompRess ./"$n"  ;;
-                *.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)
-                            7z x ./"$n"        ;;
-               *.xz)        unxz ./"$n"        ;;
-               *.exe)       cabextract ./"$n"  ;;
-               *)
-                            echo -e ${Red}"extract: '$n' - unknown archive  method"${Res}
-                            return 1
-                            ;;
-             esac
-         else
-             echo -e ${Red}"'$n' - file does not exist"${Res}
-             return 1
-        fi
-      done
- fi
-}
-
-#-------------------------------------------
-#: Read 'ALL' Readme files recursively
-#: regardless of file extension
-#-------------------------------------------
-function cr () {
-    if [ $# == 0 ]; then
-        bat ./**/*[Rr][Ee][Aa][Dd][Mm][Ee]*
-    else
-        bat $1/**/*[Rr][Ee][Aa][Dd][Mm][Ee]*
+# Function to add a directory to $PATH
+function add2Path () {
+	if [ -d "$1" ] && [ ":$PATH:" != *":$1:"* ]; then
+    	PATH="$1${PATH:+":$PATH"}"
     fi
 }
 
-#---------------------------------------------
-#: List files in directory after entering it
-#---------------------------------------------
+function my_ps () {
+	ps "$@" -u "$USER" -o \
+	pid,%cpu,%mem,start,time,bsdtime,command
+}
+
+function fix_perms () {
+	echo -ne "${Blu}Applying 0755 permission for all directories..."
+	(find . -type d -print0 | xargs -0 chmod 0755) &
+	spinner
+	echo -ne "${Res}"
+	echo -ne "${Blu}Applying 0644 permission for all files..."
+	(find . -type f -print0 | xargs -0 chmod 0644) &
+	spinner
+	echo -ne "${Res}"
+}
+
+
+# ---------------------------------------------
+# Read 'ALL' Readme files recursively
+# regardless of file extension
+function cr () {
+    if [ $? == 0 ]; then
+        bat *[Rr][Ee][Aa][Dd][Mm][Ee]*
+    else
+        bat */*[Rr][Ee][Aa][Dd][Mm][Ee]*
+    fi
+}
+
+# List files in directory after
+# entering it
 function cd () {
     if [ $# != 0 ]; then
-        command cd $1 && ls || return 13
+        command cd "$1" && ls
     else
         command cd ~/ && ls || return 13
     fi
 }
 
-#-------------------------------------------
-#: Make a new directory and change into it
-#-------------------------------------------
+# Make a new directory and change into it
 function go () {
 	if [ -d $1 ]; then
-		echo -e ${Yel}"The directory $1 already exists"${Res}
+		echo -e ${Yel}"The directory $1 already e*xists"${Res}
 		sleep 1
-		cd $1 || return 13
+		cd $1
 	else
-		mkdir -pv $@ && cd $1 || return 13
+		mkdir -pv $1 && cd $1 || return 13
+		#echo -e ${Yel}"$(pwd)"
 	fi
 }
 
-#-------------------------------------------
-# New clone function to prevent having to
-# type the full domain name each time
-#-------------------------------------------
+##############################################
+#
+# New clone function to prevent having to type
+# the full domain name each time
+#
+##############################################
 function clone () {
-	git clone https://github.com/"$1"
+	local dir
+	git clone https://github.com/"$@"
 
-	local dir=$(echo "$1" | cut -d '/' -f 2)
-	cd ${dir} || return 13
+	cd $(echo $_) || return 13
+#	if [ $# <= 1 ]; then
+#		dir=$(echo "$@" | cut -d '/' -f 2)
+#		cd $dir || return 13
+#	else
+#		dir=$(command ls -1t | head -1)
+#		cd $dir || return 13
+#	fi
+}
+
+function gist () {
+	local end arg
+	gh gist clone https://gist.github.com/"$@"
+
+	if [ -d $_ ]; then
+		cd $(echo $_) || return 13
+	else
+		bat $_ || return 13
+	fi
+#	else
+#		arg=$(echo $_)
+#		bat -l ${arg#*.} $arg
+#	if [ $# == 4 ]; then
+#		cd $4 || return 13
+#	fi
+#
+#	if [ $# == 2 ]; then
+#		dir=$(echo $2)
+#		cd $dir || return 13
+#	else
+#		dir=$(echo "$@" | cut -d '/' -f 2)
+#		cd $dir || return 13
+#	fi
 }
 
 function lab () {
@@ -168,79 +134,79 @@ function lab () {
 	cd ${dir} || return 13
 }
 
-#-------------------------------
-#: Mute the output of command
-#-------------------------------
+# ---------------------------------------------
+function usage () {
+	if [ "$(uname)" = "Linux" ]; then
+	  if [ -n "$1" ]; then
+	  	du -h --max-depth=1 "$1"
+	  else
+	    du -h --max-depth=1
+	  fi
+	fi
+}
+
 function quiet () {
 	"$*" &> /dev/null &
 }
 
-#-----------------------------------------
-#: Create a zip file based on first arg
-#-----------------------------------------
+function del () {
+	local trash="${HOME}/.local/tmp/Trash"
+	if [ -z "$trash" ]; then
+	    mkdir -pv "$trash" && mv "$@" "$trash"
+	else
+		mv "$@" "$trash"
+	fi
+
+}
+
+function suffixed () {
+    fd -e $1 -x mv {} {.}.$2
+}
+
+function bakup () {
+	local filetime filename
+	filename=$1
+	filetime=$(date +%m-%d-%y_%H:%M%P)
+	cp -a "${filename}" "${filename}_${filetime}"
+}
+
 function mkzip () {
 	zip -r "$1".zip "$1"
 }
 
-#---------------------------------
-#: Backup file with date & time
-#---------------------------------
-function bakup () {
-	local filetime filename
-	filename=$1
-	filetime=$(date +%m%Y)
-	cp -a "${filename}" "${filename}_${filetime}"
+function untar () {
+	local tmpdir=$HOME/.local/tmp
+
+	tar -xf $1 &> /dev/null || _error "Invalid archive format: $1" >2
+	ls -AFC --color && return 0
 }
 
-#--------------------------------------
-#: Delete <ARGS> to temporary location
-#: removed on reload
-#--------------------------------------
-function del () {
-	local Trash="${HOME}/.local/tmp/Trash"
-	if [ -z "$Trash" ]; then
-	    mktemp -q -d "$Trash" && mv "$@" "$Trash"
-	else mv "$@" "$Trash"
-	fi
-	unset Trash
+function mktar () {
+	tar -cvf $1.tar "$2"
 }
 
-function my_ps () {
-	ps "$@" -u "$USER" -o \
-	pid,%cpu,%mem,start,time,bsdtime,command
+function mktar.gz () {
+	tar -cavf $1.tar.gz "$2"
 }
 
-function fix_perms () {
-#    if [ -z $1 ]; then
-#        cat << EOF
-#            Usage: fix_perms <DIR>
-#
-#            Will apply 0755 permissions on the directory listed on the command line and every directory inside of it recursively. Also applying 0644 permissions for any files found inside of those directories.
-#        $EOF
-#    fi
-
-	echo -ne "${Blu}Applying 0750 permission for all directories...";
-
-	(find $1 -type d -print0 | xargs -0 chmod 0750 &)
-	#spinner;
-
-	echo -ne "${Res}";
-	echo -ne "${Blu}Applying 0640 permission for all files...";
-
-	(find $1 -type f -print0 | xargs -0 chmod 0640 &)
-	#spinner;
-	echo -ne "${Res}";
+function mktar.xz () {
+	tar -cavf $1.tar.xz "$2"
 }
 
-#-----------------------------------------------
-# Show permissions per file in octal notation
-#-----------------------------------------------
-function perms () {
-    stat --printf "$Bgrn %a %n \n$Res" "$@"
+function mktar.bz2 () {
+	tar -cavf $1.tar.bz2 "$2"
 }
 
-function mans () {
-	man "$1" | grep -iC2 --color=always "$2" | less
+function mktar.lz () {
+	tar -cavf $1.tar.lz "$2"
+}
+
+function mktar.lzma () {
+	tar -cavf $1.tar.lzma "$2"
+}
+
+function mktar.lzo () {
+	tar -cavf $1.tar.lzo "$2"
 }
 
 function mkiso () {
@@ -274,19 +240,59 @@ function mkiso () {
     fi
 }
 
-#-----------------------------------------
-#: Function to add a directory to $PATH
-#-----------------------------------------
-function add2Path () {
-	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
-    	PATH="$1${PATH:+":$PATH"}"
-    fi
+##############################################
+#
+# Extract any compRessed file type with one
+# universal command works with....
+# tar|tar.bz2|tar.gz|tar.xz|tbz2|tgz|txz
+# lzma|rar|gz|bz2|zip|Z|7z|arj|cab|chm|deb
+# dmg|iso|exe|lzh|rpm|msi|udf|wim|xar
+#
+##############################################
+function extract {
+ if [ -z "$1" ]; then
+      # display usage if no parameters given
+      echo -e ${Yel}"Usage: extract      <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+      echo -e ${Yel}"       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"${Res}
+	return 1
+ else
+      for n in $@
+      do
+        if [ -f "$n" ] ; then
+             case "${n%,}" in
+               *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                            tar xvf "$n"       ;;
+               *.lzma)      unlzma ./"$n"      ;;
+               *.bz2)       bunzip2 ./"$n"     ;;
+               *.rar)       unrar x -ad ./"$n" ;;
+               *.gz)        gunzip ./"$n"      ;;
+               *.zip)       unzip ./"$n"       ;;
+               *.z)         uncompress ./"$n"  ;;
+                *.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)
+                            7z x ./"$n"        ;;
+               *.xz)        unxz ./"$n"        ;;
+               *.exe)       cabextract ./"$n"  ;;
+               *)
+                            echo -e ${Red}"extract: '$n' - unknown archive  method"${Res}
+                            return 1
+                            ;;
+
+             esac
+         else
+             echo -e ${Red}"'$n' - file does not exist"${Res}
+             return 1
+        fi
+      done
+ fi
 }
 
 
-#-------------------------------------------
-#                -- TODO --
-#-------------------------------------------
+###############################################
+#
+# Next 'BIG' idea   ...(insert here)...
+#
+##############################################
+#: TODO
 
 #function set_git_id () {
 	# Check git user
@@ -313,3 +319,25 @@ function add2Path () {
 	# connection and credentials. Return ssh
 	# verification and config options set.
 #}
+
+
+#---------
+#: TODO
+#---------
+function private_ip () {
+#    if ifconfig 2>&1 > /dev/null; then
+        ifconfig 2> /dev/null | grep 'inet' | cut -d '.' -f 1-4 | awk '{ print $2 }' | tail -1
+#    else
+#        return 13
+}
+
+#---------
+#: TODO
+#---------
+function public_ip () {
+#    local IP=$(curl -s http://whatismyip.akamai.com)
+#    printf "%s\n" "$IP"
+
+    local IP=$(curl -s http://ipinfo.io/ip)
+    echo -ne "$IP \n"
+}

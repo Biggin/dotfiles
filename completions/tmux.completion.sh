@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 
 # tmux completion
 # See: http://www.debian-administration.org/articles/317 for how to write more.

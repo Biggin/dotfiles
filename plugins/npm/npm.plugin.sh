@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 # Install dependencies globally
 alias npmg="npm i -g "
 

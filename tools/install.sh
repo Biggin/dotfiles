@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 
 main() {
   # Use colors, but only if connected to a terminal, and that terminal

@@ -1,0 +1,133 @@
+#!/bin/bash
+
+#---------------------------  Description  ---------------------------#
+#: This file is to be sourced by other scripts (or even the shell)
+#: to allow the 256 color palette to be utilized instead of the
+#: default 16 colors available in Linux....
+#---------------------------------------------------------------------#
+
+#---------------------------------------------------------------------#
+#: Created By: Cory Nelson <cnelson13@protonmail.com>
+#: Repository: https://github.com/cnelson/configs.git
+#: Date: March-30-2023
+#: License: GPLv3
+#---------------------------------------------------------------------#
+
+#--------------------------  Escape Codes  ---------------------------#
+#  - Foreground (Text)	 - Background (Screen)	 - Set
+# 39m = default color	49m = default bg color	1m = bold
+# 30m = black			40m = black				2m = dim
+# 31m = red				41m = red				3m = italic
+# 32m = green			42m = green				4m = underline
+# 33m = yellow			43m = yellow			5m = blink
+# 34m = blue			44m = blue				7m = reverse
+# 35m = magenta			45m = magenta			8m = hidden
+# 36m = cyan			46m = cyan			-------------------------#
+# 37m = light gray		47m = light gray		 - Reset
+# 90m = dark gray		100m = dark gray		0m = reset all
+# 91m = light red		101m = light red	   21m = reset bold
+# 92m = light green		102m = light green	   22m = reset dim
+# 93m = light yellow	103m = light yellow	   23m = reset italic
+# 94m = light blue		104m = light blue	   24m = reset underlne
+# 95m = light magenta	205m = light magenta   25m = reset blink
+# 96m = light cyan		106m = light cyan	   27m = reset rev
+# 97m = white			107m = white		   28m = reset hidden
+#--------------------------------------------------------------------#
+
+#-----  True Color Variables  -----#
+if tput -V > /dev/null && (( $(tput colors) == 256 )) ; then
+	red="$(tput setaf 160)"
+	salmon="$(tput setaf 225)"
+	pink="$(tput setaf 213)"
+	green="$(tput setaf 34)"
+	lime="$(tput setaf 46)"
+	orange="$(tput setaf 214)"
+	yellow="$(tput setaf 226)"
+	blue="$(tput setaf 27)"
+	baby="$(tput setaf 45)"
+	purple="$(tput setaf 129)"
+	violet="$(tput setaf 171)"
+	brown="$(tput setaf 94)"
+	tan="$(tput setaf 220)"
+	white="$(tput setaf 255)"
+	ash="$(tput setaf 250)"
+	gray="$(tput setaf 245)"
+	slate="$(tput setaf 240)"
+	black="$(tput setaf 236)"
+
+	bold="$(tput bold)"			# \E[1
+	light="$(tput dim)"			# \E[2m (half-bright)
+	itals="$(tput sitm)"		# \E[3m (italic)		rmtm
+	under="$(tput smul)"		# \E[4m (underline)		rmul
+	backg="$(tput smso)"		# \E[7m (standout)		rmso
+	invis="$(tput invis)"		# \E[8m (hidden)
+	reset="$(tput sgr 0)"		# \E[0m
+	norml="$(tput sgr0)"
+else
+	gry=$(echo -e '\e[90m')
+	blk=$(echo -e '\e[30m')
+	red=$(echo -e '\e[31m')
+	grn=$(echo -e '\e[32m')
+	ylw=$(echo -e '\e[33m')
+	blu=$(echo -e '\e[34m')
+	mag=$(echo -e '\e[35m')
+	cya=$(echo -e '\e[36m')
+	wht=$(echo -e '\e[97m')
+
+	lred=$(echo -e '\e[91m')
+	lgrn=$(echo -e '\e[92m')
+	lylw=$(echo -e '\e[93m')
+	lblu=$(echo -e '\e[94m')
+	lmag=$(echo -e '\e[95m')
+	lcya=$(echo -e '\e[96m')
+	lgry=$(echo -e '\e[37m')
+
+	rset=$(echo -e '\e[0m')
+	bold=$(echo -e '\e[1m')
+	dark=$(echo -e '\e[2m')
+	ital=$(echo -e '\e[3m')
+	undl=$(echo -e '\e[4m')
+	revs=$(echo -e '\e[7m')
+	hide=$(echo -e '\e[8m')
+	strk=$(echo -e '\e[9m')
+	norm=$(echo -e '\e[39m')
+fi
+
+
+#------------------------------------------------------
+# reset='\033[0m'
+# bold='\033[1m'		# noBold='\033[22m'
+# italic='\033[3m'		# noItalic='\033[23m'
+# underline='\033[4m'	# noUnderline='\033[24m'
+# blink='\033[5m'		# noBlink='\033[25m'
+# reverse='\033[7m'		# noReverse='\033[27m'
+# strike='\033[9m'		# noStrike='\033[29m'
+#------------------------------------------------------
+#
+#if [ ! "$BUILD_WITH_COLORS" = "0" ]; then
+#    txtrst=$(tput sgr0)             #  Reset
+
+#    red=$(tput setaf 1)             #  red
+#    grn=$(tput setaf 2)             #  green
+#    ylw=$(tput setaf 3)             #  yellow
+#    blu=$(tput setaf 4)             #  blue
+#    ppl=$(tput setaf 5)             #  purple
+#    cya=$(tput setaf 6)             #  cyan
+
+#    txtbld=$(tput bold)             #  Bold
+#    bldred=${txtbld}$(tput setaf 1) #  red
+#    bldgrn=${txtbld}$(tput setaf 2) #  green
+#    bldylw=${txtbld}$(tput setaf 3) #  yellow
+#    bldblu=${txtbld}$(tput setaf 4) #  blue
+#    bldppl=${txtbld}$(tput setaf 5) #  purple
+#    bldcya=${txtbld}$(tput setaf 6) #  cyan
+
+#    rev=$(tput rev)                 #  Reverse color
+#    pplrev=${rev}$(tput setaf 5)
+#    cyarev=${rev}$(tput setaf 6)
+#    ylwrev=${rev}$(tput setaf 3)
+#    blurev=${rev}$(tput setaf 4)
+
+#    normal=$(tput sgr0)
+#fi
+#------------------------------------------------------

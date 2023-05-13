@@ -1,0 +1,25 @@
+[General]
+  snippetfile = "/data/data/com.termux/files/home/.config/pet/snippet.toml"
+  editor = "nano -W"
+  column = 40
+  selectcmd = "fzf"
+  backend = "gist"
+  sortby = "newest"
+
+[Gist]
+  file_name = "pet-snippet.toml"
+  access_token = "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"
+  gist_id = "175f5a46f8f35f9ac446cc1fb0b73ee1"
+  public = true
+  auto_sync = true
+
+[GitLab]
+  file_name = "pet-snippet.toml"
+  access_token = ""
+  url = ""
+  id = ""
+  visibility = "public"
+  auto_sync = true
+  skip_ssl = true
+
+

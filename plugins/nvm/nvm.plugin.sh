@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Set NVM_DIR if it isn't already defined
 [[ -z "$NVM_DIR" ]] && export NVM_DIR="$HOME/.nvm"

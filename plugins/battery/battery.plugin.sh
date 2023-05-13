@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Bug: https://github.com/ohmybash/oh-my-bash/issues/68
 if ! command -v "command_exists" >/dev/null; then	command_exists() { command -v "$1" >/dev/null ;	} fi

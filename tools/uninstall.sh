@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 
 read -r -p "Are you sure you want to remove Oh My Bash? [y/N] " confirmation
 if [ "$confirmation" != y ] && [ "$confirmation" != Y ]; then

@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bash
+#!/usr/bin/env bash
 ############################---Description---###################################
 #                                                                              #
 # Summary       : A collection of handy utilities and functions for bash       #
