@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 # ------------------------------------------------------------------------------
 # FILE: autossh
 # DESCRIPTION: This is an SSH-D proxy with auto-reconnect on disconnect

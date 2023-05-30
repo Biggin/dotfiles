@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 
 #---------------------------  Description  ---------------------------#
 #: This file is to be sourced by other scripts (or even the shell)
@@ -82,19 +82,20 @@ else
 	lcya=$(echo -e '\e[96m')
 	lgry=$(echo -e '\e[37m')
 
-	rset=$(echo -e '\e[0m')
+	norm=$(echo -e '\e[0m')
 	bold=$(echo -e '\e[1m')
 	dark=$(echo -e '\e[2m')
 	ital=$(echo -e '\e[3m')
 	undl=$(echo -e '\e[4m')
+	blnk=$(echo -e '\e[5m')
 	revs=$(echo -e '\e[7m')
 	hide=$(echo -e '\e[8m')
 	strk=$(echo -e '\e[9m')
-	norm=$(echo -e '\e[39m')
+	rset=$(echo -e '\e[39m')
 fi
 
 
-#------------------------------------------------------
+#---------------------------------------------------
 # reset='\033[0m'
 # bold='\033[1m'		# noBold='\033[22m'
 # italic='\033[3m'		# noItalic='\033[23m'
@@ -102,7 +103,7 @@ fi
 # blink='\033[5m'		# noBlink='\033[25m'
 # reverse='\033[7m'		# noReverse='\033[27m'
 # strike='\033[9m'		# noStrike='\033[29m'
-#------------------------------------------------------
+#---------------------------------------------------
 #
 #if [ ! "$BUILD_WITH_COLORS" = "0" ]; then
 #    txtrst=$(tput sgr0)             #  Reset
@@ -130,4 +131,4 @@ fi
 
 #    normal=$(tput sgr0)
 #fi
-#------------------------------------------------------
+#---------------------------------------------------

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 # Copyright (c) 2015, Toan Nguyen - https://nntoan.github.io
 # All rights reserved.
 #

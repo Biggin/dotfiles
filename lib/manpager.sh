@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
-export LESS='-RFXia#.5 --mouse'
-export PAGER="${PAGER:-less}"
+#export LESS='-RFXia#.5 --mouse'
+#export PAGER="${PAGER:-less}"
 
 ## Enable colored man-page output
 #export LESS_TERMCAP_mb=$'\e[1;33m'
@@ -16,9 +16,9 @@ export PAGER="${PAGER:-less}"
 function man () {
 	command -p env \
 	  LESS_TERMCAP_mb="$(printf '\e[1;31m')" \
-      LESS_TERMCAP_md="$(printf '\e[1;38;5;40m')" \
-      LESS_TERMCAP_so="$(printf '\e[1;3;46;33m')" \
-      LESS_TERMCAP_us="$(printf '\e[4;38;5;215m')" \
+      LESS_TERMCAP_md="$(printf '\e[1;38;5;76m')" \
+      LESS_TERMCAP_so="$(printf '\e[48;5;135m \e[1;3;38;5;226m')" \
+      LESS_TERMCAP_us="$(printf '\e[3;4;38;5;51m')" \
       LESS_TERMCAP_me="$(printf '\e[0m')" \
       LESS_TERMCAP_se="$(printf '\e[0m')" \
       LESS_TERMCAP_ue="$(printf '\e[0m')" \

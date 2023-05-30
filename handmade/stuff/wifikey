@@ -1,1 +1,0 @@
-alias wifikey="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/" 

@@ -1,17 +1,17 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[ -x $PREFIX/bin/lesspipe ] && eval "$(SHELL=$PREFIX/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+if [ -z "${debian_chroot:-}" ] && [ -r $PREFIX/etc/debian_chroot ]; then
+    debian_chroot=$(cat $PREFIX/etc/debian_chroot)
 fi
 
 # Enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
+if [ -x $PREFIX/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
@@ -26,7 +26,7 @@ esac
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+  if [ -x $PREFIX/bin/tput ] && tput setaf 1 >&/dev/null; then
     # We have color support; assume it's compliant with Ecma-48
     # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
     # a case would tend to support setf rather than setaf.)
@@ -72,16 +72,17 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+  if [ -f $PREFIX/share/bash-completion/bash_completion ]; then
+    . $PREFIX/share/bash-completion/bash_completion
+  elif [ -f $PREFIX/etc/bash_completion ]; then
+    . $PREFIX/etc/bash_completion
   fi
 fi
 
 # ccache configurations
 export USE_CCACHE=1
+export CCACHE_EXEC=$(which ccache)
 export CCACHE_NLEVELS=5
-export CCACHE_MAXSIZE=20G
+export CCACHE_MAXSIZE=2G
 export CCACHE_DIR="$HOME/.config/ccache"
-export CCACHE_LOGFILE="$HOME/.config/ccache/cash.log"
+export CCACHE_LOGFILE="$HOME/.config/ccache/ccache.log"

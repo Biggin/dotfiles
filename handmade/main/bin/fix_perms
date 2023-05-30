@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 #function fix_perms () {
 source /home/h4ck3r/.dotfiles/handmade/tools/colors.sh

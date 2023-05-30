@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 # Set NVM_DIR if it isn't already defined
 [[ -z "$SDKMAN_DIR" ]] && export NVM_DIR="$HOME/.sdkman"

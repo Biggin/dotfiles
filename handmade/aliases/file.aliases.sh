@@ -1,24 +1,25 @@
 #: An alias file for faster calls of file manipulation commands
-alias aliases.file="nano $OSH_CUSTOM/aliases/file.aliases.sh"
+alias aliases.file="nano ${OSH_CUSTOM}/aliases/file.aliases.sh"
 
 #-----------------------------------------#
 #       Startup files & Permissions		  #
 #-----------------------------------------#
 alias src="source ~/.bashrc"
-alias 000='sudo chmod 000'
-alias 600='sudo chmod 600'
-alias 644='sudo chmod 644'
-alias 700='sudo chmod 700'
-alias 755='sudo chmod 755'
-alias 777='sudo chmod 777'
-alias moda='sudo chmod a+x'
-alias modu='sudo chmod u+x'
-alias own="sudo chown -R `whoami`:`whoami`"
+alias 000='chmod 000'
+alias 600='chmod 600'
+alias 644='chmod 644'
+alias 700='chmod 700'
+alias 755='chmod 755'
+alias 777='chmod 777'
+alias modx='chmod a+x'
+alias modu='chmod u+x'
+alias own="chown -R `whoami`:`whoami`"
 alias path='echo -e ${PATH//:/\\n}'
+
 
 #------  Config file editing  -------#
 alias rc="nano $HOME/.bashrc"
-alias omy="nano $OSH_CUSTOM/main/omy-bash.sh"
+alias omy="nano $OSH/omy-bash.sh"
 alias funcs="nano $OSH_CUSTOM/funcs.sh"
 alias bcfg='nano ~/.config/bat/config'
 alias ccfg='nano ~/.config/ccache/ccache.conf'
@@ -29,36 +30,36 @@ alias gcfg='nano ~/.gitconfig'
 #------------------------------------#
 #      Security and safety nets		 #
 #------------------------------------#
-alias cp='cp -irv'
-alias rmf='rm -vrf'
-alias rm='rm -Iv'
-alias mv='mv -iv'
-alias ln='ln -iv'
-alias lns='ln -s'
-alias mkd='mkdir -pv'
-alias nano='nano -W'
-alias nash='nano -Y sh'
-alias diff='diff --color=always --suppress-common-lines'
-alias diffy='diff -yw'
-alias viff='diff -v'
-alias r='fc -s'
-alias hd='hexdump'
-alias hdc='hexdump -C'
-alias fd='fd -LH -i'
-alias bat='batcat'
-alias c='bat'
-alias cb='bat -l bash'
+alias cp='cp -irv '
+alias rmf='rm -vrf '
+alias rm='rm -Iv '
+alias mv='mv -iv '
+alias ln='ln -iv '
+alias lns='ln -s '
+alias mkd='mkdir -pv '
+alias nano='nano -W '
+alias nash='nano -Y sh '
+alias diff='diff --color=always --suppress-common-lines '
+alias diffy='diff -yw '
+alias viff='diff -v '
+alias r='fc -s '
+alias hd='hexdump '
+alias hdc='hexdump -C '
+alias fd='fd -LH -i '
+alias c='bat '
+alias cb='bat -l bash '
 alias blist='bat --list-themes'
 alias blang='bat --list-languages'
+alias dlt='delta '
 alias dls='delta --show-config'
 alias dlist='delta --show-syntax-themes'
 alias dlang='delta --list-languages'
-alias nums='cat -ns'
+alias nums='cat -ns '
 alias uncat="tac -r -s 'x\|[^x]' "
-alias file='file -s -z'
-alias ccache='ccache --config-path=$HOME/.config/ccache/ccache.conf'
-alias cpv='rsync -avuz --progress'
-#alias resync="rsync -avhiuz -AEIX -T $tmpdir --stats --progress --preallocate --fake-super --mkpath --inplace"
+alias file='file -s -z '
+alias ccache='ccache --config-path=$HOME/.config/ccache/ccache.conf '
+alias cpv='rsync -avuz --progress '
+#alias resync="rsync -avhiuz -AEIX -T $tmpdir --stats --progress --preallocate --fake-super --mkpath --inplace "
 
 function resync () {
 	local tmpdir="~/.local/tmp/rsync"
@@ -70,42 +71,47 @@ function resync () {
 	rsync -avhiuz -AEIX -T $tmpdir --progress --preallocate --fake-super --mkpath --inplace "$@"
 }
 
+
 #------  Secure File Removal  -------#
-alias sub='sudo scrub -SRtfr -p pfitzner33'
-alias bish='sudo scrub -SRfr -p pfitzner33 ~/.bash_history ~/.lesshst'
-alias shard='sudo shred -fzn 23 --remove=wipe'
+alias sub='scrub -SRtfr -p pfitzner33 '
+alias bish='scrub -SRfr -p pfitzner33 ~/.bash_history ~/.lesshst '
+alias shard='shred -fzn 23 --remove=wipe '
+
 
 #-----------  Disk Usage  -----------#
-alias du='sudo du -chL'
-alias used='sudo du -sh --time'
-alias df='sudo df -H'
-alias free='sudo free -lh --total'
+alias du='du -chL '
+alias used='du -sh --time '
+alias df='df -H '
+alias free='free -lh --total '
 
 
 #----------------------------------------------#
 #      Cryptographic tools, mainly GPG		   #
 #----------------------------------------------#
-alias gpg-kill='gpgconf --kill gpg-agent'
-alias gpg.d='gpg -d'
-alias gpg.df='gpg --decrypt-files'
-alias gpg.e='gpg -r @biggin -ec'
-alias gpg.ef='gpg -r @biggin --encrypt-files'
-alias gpg.s='gpg -r @biggin -s'
-alias gpg.a='gpg -r @biggin -a'
-alias gpg.v='gpg --verify'
-alias gpg.gk='gpg --full-generate-key'
-alias gpg.ek='gpg --edit-key'
-alias gpg.ls='gpg --check-sigs'
-alias gpg.lf='gpg --list-fingerprints'
+alias gpg-kill='gpgconf --kill gpg-agent '
+alias gpg.d='gpg -d '
+alias gpg.df='gpg --decrypt-files '
+alias gpg.e='gpg -r @biggin -ec '
+alias gpg.ef='gpg -r @biggin --encrypt-files '
+alias gpg.s='gpg -r @biggin -s '
+alias gpg.a='gpg -r @biggin -a '
+alias gpg.v='gpg --verify '
+alias gpg.gk='gpg --full-generate-key '
+alias gpg.ek='gpg --edit-key '
+alias gpg.ls='gpg --check-sigs '
+alias gpg.lf='gpg --list-fingerprints '
+
 
 #-------------  GPGTAR  -------------#
-alias gtar='gpgtar -v'
+alias gtar='gpgtar -v '
 alias gtar.e='gtar -esc -u @biggin --output '
-alias gtar.d='gtar --decrypt'
-alias gtar.ls='gtar -t'
+alias gtar.d='gtar --decrypt '
+alias gtar.ls='gtar -t '
+
 
 #------------  OPENSSL  -------------#
-alias ssl='openssl'
+alias ssl='openssl '
+
 
 #------  Encrypt with Openssl  ------#
 function ssl-enc () {

@@ -53,15 +53,15 @@ function cd () {
 #---------------------------------------------
 # Make a new directory and change into it
 #---------------------------------------------
-function go () {
-	if [ -d $1 ]; then
-		echo -e ${Yel}"The directory $1 already exists"${Res}
-		sleep 1.5
-		cd $1
-	else
-		mkdir -pv $1 && cd $1 || return 13
-	fi
-}
+#function go () {
+#	if [ -d $1 ]; then
+#		echo -e ${Yel}"The directory $1 already exists"${Res}
+#		sleep 1.5
+#		cd $1
+#	else
+#		mkdir -pv $1 && cd $1 || return 13
+#	fi
+#}
 
 #-----------------------------------------------------------------------------------------
 # Testing a new clone function to prevent having to type the full domain name each time

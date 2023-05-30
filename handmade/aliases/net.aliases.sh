@@ -1,29 +1,28 @@
 #: Alias file for quicker calls of common frequently used commands
-alias aliases.net="nano $OSH_CUSTOM/aliases/net.aliases.sh"
+alias aliases.net="nano ${OSH_CUSTOM}/aliases/net.aliases.sh"
 
 ########################################
 #
 #       Internet & networking
 #
 ########################################
-alias wget='wget -c --progress=bar --show-progress'
-alias wget2='wget2 -c --progress=bar --show-progress'
+alias wget='wget -c --show-progress'
+alias wget2='wget2 -c --show-progress'
 alias curl='curl -L'
-alias ip="sudo ip -c -h -d -s -s a"
-alias ping='sudo ping -c 10'
-alias ports='sudo netstat -tulanp'
-alias chains='sudo proxychains4'
-alias iface="sudo ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'"
+alias ip="ip -c -h -d -s -s a"
+alias ping='ping -c 10'
+alias ports='netstat -tulanp'
+alias chains='proxychains4'
+alias iface="ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'"
 alias net="$(which curl) -w '\n' ipinfo.io"
 alias private_ip="ifconfig 2> /dev/null | grep 'inet' | cut -d '.' -f 1-4 | awk '{ print \$2 }' | tail -1"
 alias public_ip="curl -w '\n' ipinfo.io/ip"
-alias rfkill='sudo rfkill --output DEVICE,ID,TYPE,TYPE-DESC,SOFT,HARD'
-alias wifikey="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
+alias rfkill='rfkill --output DEVICE,ID,TYPE,TYPE-DESC,SOFT,HARD'
 
 
 ########################################
 #
-#        	   SSH Stuff
+#            SSH Stuff
 #
 ########################################
 alias ssh-eval='eval $(ssh-agent -s)'
@@ -32,10 +31,11 @@ alias ssh-genRsa='ssh-keygen -t rsa -b 4096 -C'
 alias ssh-add-tux='ssh-add ~/.ssh/tux_id_rsa'
 alias ssh-add-big='ssh-add ~/.ssh/biggin_gh_ed25519'
 alias ssh-add-cl='ssh-add ~/.ssh/clnelson_gh_ed25519'
-alias deagent-ssh='pgrep ssh-agent | sudo xargs kill'
+alias deagent-ssh='pgrep ssh-agent | xargs kill'
 alias ssh-gpg-connect='gpg-connect-agent /bye'
 alias ssh-gpg-update='gpg-connect-agent updatestartuptty /bye'
 alias ssh.T="ssh -T git@github.com"
+
 
 ###############################################
 #

@@ -1,4 +1,3 @@
-/data/data/com.termux/files/home/uniq.txt 32 3
 /data/data/com.termux/files/home/default.prop 159 3659
 /storage/D5FD-1F00/Android/data/com.termux/home/scripts/setup/termux-setup.sh 37 119
 /data/data/com.termux/files/home/.dotfiles/handmade/base.sh 144 1
@@ -102,12 +101,10 @@
 /data/data/com.termux/files/home/dotfiles/handmade/aliases/bash.aliases.sh 73 1
 /data/data/com.termux/files/home/dotfiles/lib/bourne-shell.sh 91 1
 /data/data/com.termux/files/home/dotfiles/lib/functions.sh 88 1
-/data/data/com.termux/files/home/.nanorc 262 1
 /data/data/com.termux/files/usr/etc/darrc 1 2
 /data/data/com.termux/files/home/.dotfiles/handmade/themes/biggin/biggin.theme.sh 7 50
 /data/data/com.termux/files/home/doc/bash.template 5 20
 /data/data/com.termux/files/home/.dotfiles/handmade/completions/cheat.completion.sh 17 34
-/data/data/com.termux/files/home/.dotfiles/handmade/themes/parrot/parrot.theme.sh 16 516
 /data/data/com.termux/files/home/.dotfiles/handmade/scripts/progress-dots.sh 28 1
 /data/data/com.termux/files/usr/bin/msfconsole 3 43
 /data/data/com.termux/files/home/github/metasploit_termux/msfconsole 4 1
@@ -124,7 +121,6 @@
 /data/data/com.termux/files/home/.dotfiles/handmade/aliases/android.aliases.sh 56 1
 /data/data/com.termux/files/home/.config/proxychains/chains.conf 154 1
 /data/data/com.termux/files/home/.termux/termux.properties 40 1
-/data/data/com.termux/files/home/.dotfiles/handmade/aliases/pkg.aliases.sh 19 36
 /data/data/com.termux/files/home/.gnupg/gpg.conf 9 34
 /data/data/com.termux/files/home/.config/bat/config 9 14
 /data/data/com.termux/files/home/.local/share/nano-syntax/nanorc.nanorc 26 17
@@ -145,7 +141,6 @@
 /data/data/com.termux/files/home/downloads/Information-report.md 316 31
 /data/data/com.termux/files/home/.config/glow/glow.yml 10 10
 /data/data/com.termux/files/usr/etc/man.conf.bak 1 9
-/data/data/com.termux/files/home/.dotfiles/lib/manpager.sh 26 62
 /data/data/com.termux/files/usr/etc/man.conf 1 98
 /data/data/com.termux/files/usr/share/man-pages/Makefile 208 1
 /data/data/com.termux/files/home/bin/rish 12 61
@@ -153,7 +148,6 @@
 /data/data/com.termux/files/home/.config/pet/config.toml 12 46
 /data/data/com.termux/files/home/.ssh/config 33 13
 /data/data/com.termux/files/home/fingerprint 1 41
-/data/data/com.termux/files/home/.dotfiles/handmade/funcs.sh 123 16
 /data/data/com.termux/files/home/work/util_scripts/001_calculate_run_time.sh 14 1
 /data/data/com.termux/files/home/work/util_scripts/002_parsing_arguments.sh 7 1
 /data/data/com.termux/files/home/work/util_scripts/003_trap_when_ctrl+c.sh 13 5
@@ -177,7 +171,6 @@
 /data/data/com.termux/files/home/.dotfiles/lib/grep.sh 7 19
 /data/data/com.termux/files/usr/etc/nanorc 2 59
 /data/data/com.termux/files/usr/etc/rhashrc 25 1
-/data/data/com.termux/files/home/.dotfiles/handmade/aliases/bash.aliases.sh 32 24
 /data/data/com.termux/files/usr/etc/profile 23 1
 /data/data/com.termux/files/home/price.sh 4 57
 /data/data/com.termux/files/home/dir.sh 1 8
@@ -197,3 +190,11 @@
 /data/data/com.termux/files/home/.dircolors 208 1
 /data/data/com.termux/files/usr/share/nano/default.nanorc 31 1
 /data/data/com.termux/files/home/.local/share/nano-syntax/git.nanorc 7 12
+/data/data/com.termux/files/home/.dotfiles/lib/manpager.sh 26 15
+/data/data/com.termux/files/home/.nanorc 261 50
+/data/data/com.termux/files/home/termux/termux.properties 71 29
+/data/data/com.termux/files/home/.dotfiles/handmade/aliases/bash.aliases.sh 86 37
+/data/data/com.termux/files/home/.dotfiles/handmade/aliases/pkg.aliases.sh 16 28
+/data/data/com.termux/files/home/.dotfiles/handmade/funcs.sh 23 1
+/data/data/com.termux/files/home/.dotfiles/handmade/themes/parrot/parrot.theme.sh 8 511
+/data/data/com.termux/files/home/.dotfiles/handmade/main/config/bat/config 8 2

@@ -1,5 +1,5 @@
 # Git aliases borrowed from the oh-my-bash git plugin and modified for my use on various systems
-alias aliases.git='nano $OSH_CUSTOM/aliases/git.aliases.sh'
+alias aliases.git='nano ${OSH_CUSTOM}/aliases/git.aliases.sh'
 
 
 ###############
@@ -46,14 +46,12 @@ function work_in_progress() {
 
 
 ###########
-#		  #
+#	  #
 # Aliases #
-#		  #
+#	  #
 ###########
-alias gcfg="nano $HOME/.gitconfig"
-
 # exa cmd to list files with git statuses in long format
-alias lg='exa --long -@ -FHhbmrs --color-scale --color=always --icons --git-ignore --git --no-user'
+alias lg='la --long -@Hmrs --git-ignore --git --no-user'
 
 alias gadd='git add .'
 alias git.aa='git add --all'
@@ -61,6 +59,7 @@ alias git.ap='git add --patch'
 alias git.au='git add --update'
 
 alias git.br='git branch'
+#compdef _git git.br=git-branch
 alias git.bra='git branch -a'
 
 alias git.bs='git bisect'
@@ -85,6 +84,7 @@ alias git.cfs='git config --system'
 
 alias clean='git clean -df'
 alias pristine='git reset --hard && git clean -dfx'
+
 # Reset local repo with remote branch
 alias renew="git fetch origin && git reset --hard origin/master && git clean -df"
 
@@ -92,10 +92,9 @@ alias git.chk='git checkout'
 #compdef _git git.chk=git-checkout
 alias git.chb='git checkout -b'
 #compdef _git git.chb=git-checkout
-alias git.chm='git checkout master'
-#compdef _git git.chm=git-checkout
-alias git.chd='git checkout develop'
+alias git.chd='git checkout dev'
 #compdef _git git.chd=git-checkout
+alias gmain='git checkout main'
 
 alias git.cnt='git shortlog -sn'
 #compdef _git git.cnt complete -F _git gcount

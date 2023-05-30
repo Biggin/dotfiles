@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 which register-python-argcomplete &> /dev/null \
   && eval "$(register-python-argcomplete conda)" \
   || echo "Please install argcomplete to use conda completion" > /dev/null

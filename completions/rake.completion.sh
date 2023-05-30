@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 # Bash completion support for Rake, Ruby Make.
 
 export COMP_WORDBREAKS=${COMP_WORDBREAKS/\:/}

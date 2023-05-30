@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 # Various shell options collected in single file
 # taken from bash-sensible and other sources
@@ -48,23 +48,9 @@ shopt -s dirspell 2> /dev/null
 shopt -s cdspell 2> /dev/null
 
 # This defines where cd looks for targets, add directories you want to have fast access to, separated by colon
-# Ex: CDPATH=".:~:~/projects" will look for targets in the current working directory, in home and in the ~/projec
-CDPATH=".:~:~/github:~/Desktop"
+# Ex: CDPATH=".:~:~/projects" will look for targets in the current working directory, in home and in the ~/project
+CDPATH="."
 
 # This allows you to bookmark your favorite places across the file system
 # Define a variable containing a path and you will be able to cd into it regardless of the directory you're in
-shopt -s cdable_vars
-
-export bin="$HOME/bin"
-export obin="/opt/bin"
-export tools="$bin/android"
-export hand="$HOME/.dotfiles/handmade"
-export sdk="/opt/sdk"
-export studio="/opt/android-studio"
-export tc="/opt/toolchains"
-export dl="$HOME/Download"
-export doc="$HOME/Documents"
-export pic="$HOME/Pictures"
-export play="$HOME/source"
-export grub="/boot/grub"
-export idea="/opt/intellij-IDEA"
+#shopt -s cdable_vars

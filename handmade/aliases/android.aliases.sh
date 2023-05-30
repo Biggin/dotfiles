@@ -1,5 +1,3 @@
-#!/usr/bin/bash
-
 ###########################################################
 #
 # Aliases for Android flashing and development work
@@ -43,7 +41,7 @@ alias fast.fb='fastboot flash boot'
 alias fast.fr='fastboot flash recovery'
 alias fast.fs='fastboot flash system'
 alias fast.un='fastboot oem unlock'
-#alias fast.un='fastboot flashing unlock'
+alias fast.fun='fastboot flashing unlock'
 alias fast.unc='fastboot flashing unlock_critical'
 alias fast.var='fastboot getvar all'
 alias fast.info='fastboot oem device-info'

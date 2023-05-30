@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/data/data/com.termux/files/usr/bin/sh
 
 # check for unzip before we continue
 if [ ! "$(command -v unzip)" ]; then
